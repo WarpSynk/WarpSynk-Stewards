@@ -4,10 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WarpSynk Steward Founders Edition</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/forms@0.5.3/dist/forms.min.js"></script>
+    
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <script>
+        // Tailwind Config
         tailwind.config = {
             theme: {
                 extend: {
@@ -40,6 +46,7 @@
                         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                         'float': 'float 6s ease-in-out infinite',
                         'glow': 'glow 2s ease-in-out infinite alternate',
+                        'text-shimmer': 'text-shimmer 2s ease-in-out infinite alternate',
                     },
                     keyframes: {
                         float: {
@@ -49,25 +56,33 @@
                         glow: {
                             '0%': { boxShadow: '0 0 5px #8b5cf6, 0 0 10px #8b5cf6, 0 0 15px #8b5cf6' },
                             '100%': { boxShadow: '0 0 10px #8b5cf6, 0 0 20px #8b5cf6, 0 0 30px #8b5cf6' },
+                        },
+                        'text-shimmer': {
+                            '0%': { 'background-position': '-200% center' },
+                            '100%': { 'background-position': '200% center' },
                         }
                     }
                 }
             }
         }
     </script>
+    
     <style>
+        /* Custom CSS */
         body {
             background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #0a0a18 100%);
             min-height: 100vh;
             color: white;
+            font-family: 'Inter', sans-serif;
         }
-        
+
         .cyber-border {
             position: relative;
             border: 1px solid #8b5cf6;
             box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+            border-radius: 12px;
         }
-        
+
         .cyber-border::before {
             content: '';
             position: absolute;
@@ -80,22 +95,49 @@
             border-radius: inherit;
             opacity: 0.7;
         }
-        
+
         .node-visual {
             background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, rgba(139, 92, 246, 0) 70%);
         }
-        
+
         .grid-pattern {
             background-image: 
                 linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px);
             background-size: 50px 50px;
         }
+
+        .shimmer-text {
+            background: linear-gradient(90deg, #8b5cf6, #a78bfa, #c4b5fd, #a78bfa, #8b5cf6);
+            background-size: 200% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: text-shimmer 3s ease-in-out infinite;
+        }
+
+        .glass-effect {
+            background: rgba(15, 15, 35, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
-<body class="font-inter grid-pattern">
+<body class="grid-pattern">
     <!-- Navigation -->
-    <nav class="border-b border-synk-primary/20 py-4 px-6">
+    <nav class="border-b border-synk-primary/20 py-4 px-6 sticky top-0 z-40 glass-effect">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-2">
                 <div class="w-8 h-8 bg-gradient-to-br from-synk-primary to-synk-secondary rounded-lg"></div>
@@ -116,47 +158,47 @@
     <!-- Hero Section -->
     <section class="relative overflow-hidden py-20 px-6">
         <div class="max-w-7xl mx-auto text-center">
-            <div class="inline-block cyber-border px-4 py-1 rounded-full mb-6">
+            <div class="inline-block cyber-border px-4 py-1 rounded-full mb-6 fade-in">
                 <span class="text-synk-secondary font-medium">Founders Edition</span>
             </div>
-            
-            <h1 class="font-orbitron text-5xl md:text-7xl font-bold mb-6">
-                <span class="bg-gradient-to-r from-synk-primary to-synk-secondary bg-clip-text text-transparent">
+
+            <h1 class="font-orbitron text-5xl md:text-7xl font-bold mb-6 fade-in">
+                <span class="shimmer-text">
                     You Are The Protocol
                 </span>
             </h1>
-            
-            <p class="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-8 leading-relaxed">
+
+            <p class="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-8 leading-relaxed fade-in">
                 The WarpSynk Steward Founders Edition. A lifetime seat for the architects of data sovereignty. 
                 <span class="text-synk-secondary font-semibold">This is not a collectible. This is a covenant.</span>
             </p>
-            
+
             <!-- Countdown Timer -->
-            <div class="max-w-2xl mx-auto mb-8">
+            <div class="max-w-2xl mx-auto mb-8 fade-in">
                 <div class="cyber-border rounded-xl p-6 bg-synk-dark/60 backdrop-blur-sm">
                     <p class="text-synk-secondary font-semibold mb-4">WHITELIST MINT BEGINS IN</p>
                     <div id="countdown" class="flex justify-center space-x-4 md:space-x-8 font-orbitron">
                         <div class="text-center">
-                            <div class="text-3xl md:text-5xl font-bold">02</div>
+                            <div class="text-3xl md:text-5xl font-bold" id="days">02</div>
                             <div class="text-sm text-gray-400">DAYS</div>
                         </div>
                         <div class="text-center">
-                            <div class="text-3xl md:text-5xl font-bold">14</div>
+                            <div class="text-3xl md:text-5xl font-bold" id="hours">14</div>
                             <div class="text-sm text-gray-400">HOURS</div>
                         </div>
                         <div class="text-center">
-                            <div class="text-3xl md:text-5xl font-bold">37</div>
+                            <div class="text-3xl md:text-5xl font-bold" id="minutes">37</div>
                             <div class="text-sm text-gray-400">MINUTES</div>
                         </div>
                         <div class="text-center">
-                            <div class="text-3xl md:text-5xl font-bold">12</div>
+                            <div class="text-3xl md:text-5xl font-bold" id="seconds">12</div>
                             <div class="text-sm text-gray-400">SECONDS</div>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center fade-in">
                 <button id="joinAllowlist" class="cyber-border px-8 py-4 rounded-lg font-semibold bg-gradient-to-r from-synk-primary to-synk-secondary hover:from-synk-secondary hover:to-synk-primary transition-all transform hover:scale-105">
                     Join the Allowlist
                 </button>
@@ -164,9 +206,9 @@
                     Explore the Covenant
                 </a>
             </div>
-            
+
             <!-- Scarcity Indicator -->
-            <div class="mt-12 cyber-border rounded-xl p-6 max-w-md mx-auto bg-synk-dark/40">
+            <div class="mt-12 cyber-border rounded-xl p-6 max-w-md mx-auto bg-synk-dark/40 fade-in">
                 <p class="font-orbitron text-lg mb-2">201 Seats. 0 Tied Votes. 1 Genesis.</p>
                 <div class="flex justify-between text-sm text-gray-400">
                     <span>50 Whitelist</span>
@@ -174,11 +216,11 @@
                     <span>51 Public</span>
                 </div>
                 <div class="w-full bg-gray-800 rounded-full h-2 mt-2">
-                    <div class="bg-gradient-to-r from-synk-primary to-synk-secondary h-2 rounded-full" style="width: 0%"></div>
+                    <div class="bg-gradient-to-r from-synk-primary to-synk-secondary h-2 rounded-full" style="width: 15%" id="mintProgress"></div>
                 </div>
             </div>
         </div>
-        
+
         <!-- Animated background elements -->
         <div class="absolute top-1/4 left-10 w-4 h-4 bg-synk-primary rounded-full animate-pulse-slow opacity-60"></div>
         <div class="absolute top-1/3 right-20 w-6 h-6 bg-synk-secondary rounded-full animate-float opacity-40"></div>
@@ -188,60 +230,60 @@
     <!-- Benefits Section -->
     <section id="benefits" class="py-20 px-6">
         <div class="max-w-7xl mx-auto">
-            <h2 class="font-orbitron text-4xl md:text-5xl font-bold text-center mb-16">
-                <span class="bg-gradient-to-r from-synk-primary to-synk-secondary bg-clip-text text-transparent">
+            <h2 class="font-orbitron text-4xl md:text-5xl font-bold text-center mb-16 fade-in">
+                <span class="shimmer-text">
                     Steward Founder Benefits
                 </span>
             </h2>
-            
+
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Benefit 1 -->
-                <div class="cyber-border rounded-xl p-6 bg-synk-dark/40 hover:bg-synk-dark/60 transition-all group">
+                <div class="cyber-border rounded-xl p-6 bg-synk-dark/40 hover:bg-synk-dark/60 transition-all group fade-in">
                     <div class="w-12 h-12 bg-gradient-to-br from-synk-primary to-synk-secondary rounded-lg mb-4 flex items-center justify-center group-hover:animate-glow">
                         <span class="text-2xl">⚡</span>
                     </div>
                     <h3 class="font-orbitron text-xl font-semibold mb-3">Free Physical Node</h3>
                     <p class="text-gray-300">$200-500 hardware, pre-configured to secure SynkMesh and earn rewards from day one.</p>
                 </div>
-                
+
                 <!-- Benefit 2 -->
-                <div class="cyber-border rounded-xl p-6 bg-synk-dark/40 hover:bg-synk-dark/60 transition-all group">
+                <div class="cyber-border rounded-xl p-6 bg-synk-dark/40 hover:bg-synk-dark/60 transition-all group fade-in">
                     <div class="w-12 h-12 bg-gradient-to-br from-synk-primary to-synk-secondary rounded-lg mb-4 flex items-center justify-center group-hover:animate-glow">
                         <span class="text-2xl">👑</span>
                     </div>
                     <h3 class="font-orbitron text-xl font-semibold mb-3">Lifetime Governance</h3>
                     <p class="text-gray-300">Direct access to core founders forever. Influence protocol decisions indefinitely.</p>
                 </div>
-                
+
                 <!-- Benefit 3 -->
-                <div class="cyber-border rounded-xl p-6 bg-synk-dark/40 hover:bg-synk-dark/60 transition-all group">
+                <div class="cyber-border rounded-xl p-6 bg-synk-dark/40 hover:bg-synk-dark/60 transition-all group fade-in">
                     <div class="w-12 h-12 bg-gradient-to-br from-synk-primary to-synk-secondary rounded-lg mb-4 flex items-center justify-center group-hover:animate-glow">
                         <span class="text-2xl">💎</span>
                     </div>
                     <h3 class="font-orbitron text-xl font-semibold mb-3">Board Member Status</h3>
                     <p class="text-gray-300">Strategic decision-making role. Name forever in Genesis Ledger as Founding Steward.</p>
                 </div>
-                
+
                 <!-- Benefit 4 -->
-                <div class="cyber-border rounded-xl p-6 bg-synk-dark/40 hover:bg-synk-dark/60 transition-all group">
+                <div class="cyber-border rounded-xl p-6 bg-synk-dark/40 hover:bg-synk-dark/60 transition-all group fade-in">
                     <div class="w-12 h-12 bg-gradient-to-br from-synk-primary to-synk-secondary rounded-lg mb-4 flex items-center justify-center group-hover:animate-glow">
                         <span class="text-2xl">🔧</span>
                     </div>
                     <h3 class="font-orbitron text-xl font-semibold mb-3">Early Tool Access</h3>
                     <p class="text-gray-300">Test WarpSynk DataFi products before public release. October 2025 testnet access.</p>
                 </div>
-                
+
                 <!-- Benefit 5 -->
-                <div class="cyber-border rounded-xl p-6 bg-synk-dark/40 hover:bg-synk-dark/60 transition-all group">
+                <div class="cyber-border rounded-xl p-6 bg-synk-dark/40 hover:bg-synk-dark/60 transition-all group fade-in">
                     <div class="w-12 h-12 bg-gradient-to-br from-synk-primary to-synk-secondary rounded-lg mb-4 flex items-center justify-center group-hover:animate-glow">
                         <span class="text-2xl">🪙</span>
                     </div>
                     <h3 class="font-orbitron text-xl font-semibold mb-3">2% $WSYNK Supply</h3>
                     <p class="text-gray-300">5,000,000 $WSYNK shared (~24,875 per NFT). $248 value at $0.01 launch price.</p>
                 </div>
-                
+
                 <!-- Benefit 6 -->
-                <div class="cyber-border rounded-xl p-6 bg-synk-dark/40 hover:bg-synk-dark/60 transition-all group">
+                <div class="cyber-border rounded-xl p-6 bg-synk-dark/40 hover:bg-synk-dark/60 transition-all group fade-in">
                     <div class="w-12 h-12 bg-gradient-to-br from-synk-primary to-synk-secondary rounded-lg mb-4 flex items-center justify-center group-hover:animate-glow">
                         <span class="text-2xl">🎖️</span>
                     </div>
@@ -255,17 +297,17 @@
     <!-- Minting Section -->
     <section id="mint" class="py-20 px-6">
         <div class="max-w-4xl mx-auto">
-            <div class="cyber-border rounded-2xl p-8 bg-synk-dark/60 backdrop-blur-sm">
+            <div class="cyber-border rounded-2xl p-8 bg-synk-dark/60 backdrop-blur-sm fade-in">
                 <h2 class="font-orbitron text-3xl md:text-4xl font-bold text-center mb-2">Mint Your Steward Seat</h2>
                 <p class="text-center text-gray-400 mb-8">Become one of the 201 Genesis Founders</p>
-                
+
                 <div class="grid md:grid-cols-2 gap-8 items-center">
                     <div>
                         <div class="node-visual rounded-xl p-8 mb-6 text-center">
                             <div class="text-6xl mb-4">🖥️</div>
                             <div class="font-orbitron text-lg">WarpSynk Validator Node</div>
                         </div>
-                        
+
                         <div class="space-y-4">
                             <div class="flex justify-between">
                                 <span>Total Supply:</span>
@@ -277,29 +319,33 @@
                             </div>
                             <div class="flex justify-between">
                                 <span>Current Phase:</span>
-                                <span class="font-orbitron text-synk-secondary">Allowlist Signup</span>
+                                <span class="font-orbitron text-synk-secondary" id="mintPhase">Allowlist Signup</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Minted:</span>
+                                <span class="font-orbitron text-synk-secondary" id="mintedCount">0/201</span>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div>
                         <div class="cyber-border rounded-xl p-6 mb-6">
                             <div class="text-center mb-4">
-                                <div class="text-2xl font-orbitron text-synk-secondary">COMING SOON</div>
-                                <div class="text-sm text-gray-400">Minting begins after allowlist period</div>
+                                <div class="text-2xl font-orbitron text-synk-secondary" id="mintStatus">COMING SOON</div>
+                                <div class="text-sm text-gray-400" id="mintSubstatus">Minting begins after allowlist period</div>
                             </div>
-                            
+
                             <button id="mintButton" disabled class="w-full cyber-border py-4 rounded-lg font-semibold bg-gray-800 text-gray-400 cursor-not-allowed">
                                 Mint Your Seat (Coming Soon)
                             </button>
-                            
+
                             <div class="mt-4 text-center text-sm text-gray-400">
                                 <div>Whitelist: <span class="text-synk-secondary">50 NFTs at $400</span></div>
                                 <div>Allowlist: <span class="text-synk-secondary">100 NFTs at $500</span></div>
                                 <div>Public: <span class="text-synk-secondary">51 NFTs at $1,000</span></div>
                             </div>
                         </div>
-                        
+
                         <div class="text-center">
                             <p class="text-sm text-gray-400">60-day refund guarantee via smart contract</p>
                         </div>
@@ -309,6 +355,43 @@
         </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="font-orbitron text-4xl md:text-5xl font-bold text-center mb-16 fade-in">
+                <span class="shimmer-text">Frequently Asked Questions</span>
+            </h2>
+
+            <div class="space-y-4">
+                <div class="cyber-border rounded-xl p-6 bg-synk-dark/40 fade-in">
+                    <h3 class="font-orbitron text-lg font-semibold mb-2">What is the WarpSynk Steward Founders Edition?</h3>
+                    <p class="text-gray-300">A limited edition NFT representing a lifetime governance seat in the WarpSynk protocol, including physical hardware and exclusive benefits.</p>
+                </div>
+
+                <div class="cyber-border rounded-xl p-6 bg-synk-dark/40 fade-in">
+                    <h3 class="font-orbitron text-lg font-semibold mb-2">How do I get a physical node?</h3>
+                    <p class="text-gray-300">After minting, you'll receive a shipping form. Nodes ship within 60 days of mint completion.</p>
+                </div>
+
+                <div class="cyber-border rounded-xl p-6 bg-synk-dark/40 fade-in">
+                    <h3 class="font-orbitron text-lg font-semibold mb-2">What's the refund policy?</h3>
+                    <p class="text-gray-300">60-day money-back guarantee through our smart contract. After 60 days or node shipment, refunds are not available.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-synk-primary/20 py-8 px-6">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="flex justify-center items-center space-x-2 mb-4">
+                <div class="w-6 h-6 bg-gradient-to-br from-synk-primary to-synk-secondary rounded-lg"></div>
+                <span class="font-orbitron text-lg font-bold">WarpSynk</span>
+            </div>
+            <p class="text-gray-400">Building the future of decentralized data sovereignty</p>
+        </div>
+    </footer>
+
     <!-- Wallet Connection Modal -->
     <div id="walletModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden z-50 flex items-center justify-center p-6">
         <div class="cyber-border rounded-2xl p-8 max-w-md w-full bg-synk-darker">
@@ -316,7 +399,7 @@
             <p class="text-gray-300 mb-6">
                 To ensure our stewards are committed builders, we require a wallet connection to join the exclusive allowlist.
             </p>
-            
+
             <ul class="space-y-3 mb-6">
                 <li class="flex items-center">
                     <span class="text-synk-primary mr-2">✓</span>
@@ -331,7 +414,7 @@
                     <span class="text-sm">Helps prevent bots and build genuine community</span>
                 </li>
             </ul>
-            
+
             <button id="modalConnect" class="w-full cyber-border py-3 rounded-lg font-semibold bg-gradient-to-r from-synk-primary to-synk-secondary hover:from-synk-secondary hover:to-synk-primary transition-all mb-4">
                 Connect Wallet
             </button>
@@ -341,7 +424,41 @@
         </div>
     </div>
 
+    <!-- JSON Data (embedded in script tag) -->
+    <script type="application/json" id="appData">
+    {
+        "project": {
+            "name": "WarpSynk Steward Founders Edition",
+            "totalSupply": 201,
+            "mintPhases": {
+                "whitelist": { "supply": 50, "price": 400, "startDate": "2024-12-01T00:00:00Z" },
+                "allowlist": { "supply": 100, "price": 500, "startDate": "2024-12-08T00:00:00Z" },
+                "public": { "supply": 51, "price": 1000, "startDate": "2024-12-15T00:00:00Z" }
+            },
+            "benefits": [
+                "Free Physical Node",
+                "Lifetime Governance",
+                "Board Member Status",
+                "Early Tool Access",
+                "2% $WSYNK Supply",
+                "Steward Badge"
+            ]
+        },
+        "mintStatus": {
+            "currentPhase": "pre-mint",
+            "mintedCount": 0,
+            "whitelistMinted": 0,
+            "allowlistMinted": 0,
+            "publicMinted": 0
+        }
+    }
+    </script>
+
+    <!-- JavaScript -->
     <script>
+        // App Configuration
+        const CONFIG = JSON.parse(document.getElementById('appData').textContent);
+        
         // DOM Elements
         const connectWalletBtn = document.getElementById('connectWallet');
         const joinAllowlistBtn = document.getElementById('joinAllowlist');
@@ -349,11 +466,121 @@
         const modalConnectBtn = document.getElementById('modalConnect');
         const closeModalBtn = document.getElementById('closeModal');
         const mintButton = document.getElementById('mintButton');
+        const countdownElements = {
+            days: document.getElementById('days'),
+            hours: document.getElementById('hours'),
+            minutes: document.getElementById('minutes'),
+            seconds: document.getElementById('seconds')
+        };
 
-        // Mock wallet connection state
+        // App State
         let walletConnected = false;
+        let allowlisted = false;
 
-        // Event Listeners
+        // Initialize Countdown
+        function initializeCountdown() {
+            const now = new Date();
+            const targetDate = new Date(CONFIG.project.mintPhases.whitelist.startDate);
+            
+            // If whitelist hasn't started, use that date
+            // Otherwise, use the next phase
+            const timeDiff = targetDate - now;
+            
+            if (timeDiff > 0) {
+                startCountdown(targetDate);
+            } else {
+                // Move to next phase countdown
+                const allowlistDate = new Date(CONFIG.project.mintPhases.allowlist.startDate);
+                if (allowlistDate - now > 0) {
+                    startCountdown(allowlistDate);
+                } else {
+                    const publicDate = new Date(CONFIG.project.mintPhases.public.startDate);
+                    startCountdown(publicDate);
+                }
+            }
+        }
+
+        function startCountdown(targetDate) {
+            function update() {
+                const now = new Date();
+                const timeLeft = targetDate - now;
+
+                if (timeLeft <= 0) {
+                    // Countdown finished
+                    Object.values(countdownElements).forEach(el => el.textContent = '00');
+                    updateMintStatus();
+                    return;
+                }
+
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                countdownElements.days.textContent = days.toString().padStart(2, '0');
+                countdownElements.hours.textContent = hours.toString().padStart(2, '0');
+                countdownElements.minutes.textContent = minutes.toString().padStart(2, '0');
+                countdownElements.seconds.textContent = seconds.toString().padStart(2, '0');
+            }
+
+            update();
+            setInterval(update, 1000);
+        }
+
+        // Update Mint Status
+        function updateMintStatus() {
+            const now = new Date();
+            const whitelistStart = new Date(CONFIG.project.mintPhases.whitelist.startDate);
+            const allowlistStart = new Date(CONFIG.project.mintPhases.allowlist.startDate);
+            const publicStart = new Date(CONFIG.project.mintPhases.public.startDate);
+
+            let status, substatus, phase;
+
+            if (now < whitelistStart) {
+                status = 'COMING SOON';
+                substatus = 'Minting begins after allowlist period';
+                phase = 'Pre-Mint';
+            } else if (now < allowlistStart) {
+                status = 'WHITELIST LIVE';
+                substatus = 'Whitelist members can mint now';
+                phase = 'Whitelist';
+            } else if (now < publicStart) {
+                status = 'ALLOWLIST LIVE';
+                substatus = 'Allowlist members can mint now';
+                phase = 'Allowlist';
+            } else {
+                status = 'PUBLIC MINT LIVE';
+                substatus = 'Public minting is now available';
+                phase = 'Public';
+            }
+
+            document.getElementById('mintStatus').textContent = status;
+            document.getElementById('mintSubstatus').textContent = substatus;
+            document.getElementById('mintPhase').textContent = phase;
+
+            // Update progress bar (simulated)
+            const progress = (CONFIG.mintStatus.mintedCount / CONFIG.project.totalSupply) * 100;
+            document.getElementById('mintProgress').style.width = `${Math.max(5, progress)}%`;
+            document.getElementById('mintedCount').textContent = 
+                `${CONFIG.mintStatus.mintedCount}/${CONFIG.project.totalSupply}`;
+        }
+
+        // Scroll Animations
+        function initializeScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Wallet Connection Handlers
         connectWalletBtn.addEventListener('click', () => {
             walletModal.classList.remove('hidden');
         });
@@ -362,25 +589,55 @@
             walletModal.classList.remove('hidden');
         });
 
-        modalConnectBtn.addEventListener('click', () => {
-            // Simulate wallet connection
-            walletConnected = true;
-            connectWalletBtn.textContent = '0x7f3...c4b2';
-            connectWalletBtn.classList.add('bg-synk-primary/20');
-            joinAllowlistBtn.textContent = 'Allowlisted! We\'ll notify you.';
-            joinAllowlistBtn.classList.remove('from-synk-primary', 'to-synk-secondary');
-            joinAllowlistBtn.classList.add('bg-green-600', 'hover:bg-green-700');
-            joinAllowlistBtn.innerHTML = '✓ Allowlisted! We\'ll notify you.';
-            
-            walletModal.classList.add('hidden');
-            
-            // Show success message
-            alert('Wallet connected successfully! You are now on the allowlist.');
+        modalConnectBtn.addEventListener('click', async () => {
+            try {
+                // Simulate wallet connection
+                walletConnected = true;
+                allowlisted = true;
+                
+                // Update UI
+                connectWalletBtn.textContent = '0x7f3...c4b2';
+                connectWalletBtn.classList.add('bg-synk-primary/20');
+                
+                joinAllowlistBtn.textContent = 'Allowlisted!';
+                joinAllowlistBtn.classList.remove('from-synk-primary', 'to-synk-secondary');
+                joinAllowlistBtn.classList.add('bg-green-600', 'hover:bg-green-700');
+                joinAllowlistBtn.innerHTML = '✓ Allowlisted! We\'ll notify you.';
+                joinAllowlistBtn.disabled = true;
+
+                walletModal.classList.add('hidden');
+
+                // Show success notification
+                showNotification('Wallet connected successfully! You are now on the allowlist.');
+                
+            } catch (error) {
+                showNotification('Failed to connect wallet. Please try again.', 'error');
+            }
         });
 
         closeModalBtn.addEventListener('click', () => {
             walletModal.classList.add('hidden');
         });
+
+        // Notification System
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-4 right-4 cyber-border p-4 rounded-lg z-50 transform transition-all ${
+                type === 'success' ? 'bg-green-900/80' : 'bg-red-900/80'
+            }`;
+            notification.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <span>${type === 'success' ? '✓' : '⚠'}</span>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
 
         // Close modal when clicking outside
         walletModal.addEventListener('click', (e) => {
@@ -389,15 +646,34 @@
             }
         });
 
-        // Countdown Timer Simulation
-        function updateCountdown() {
-            // This would be connected to actual mint date
-            // For demo purposes, we'll just keep it static
-        }
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeCountdown();
+            initializeScrollAnimations();
+            updateMintStatus();
+            
+            // Simulate some minting activity
+            setInterval(() => {
+                if (CONFIG.mintStatus.mintedCount < CONFIG.project.totalSupply) {
+                    CONFIG.mintStatus.mintedCount += Math.floor(Math.random() * 3);
+                    updateMintStatus();
+                }
+            }, 5000);
+        });
 
-        // Initialize
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
+        // Add smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>

@@ -4,461 +4,993 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WarpSynk Steward Founders Edition</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/forms@0.5.3/dist/forms.min.js"></script>
-    
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <script>
-        // Tailwind Config
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        purple: {
-                            50: '#faf5ff',
-                            100: '#f3e8ff',
-                            200: '#e9d5ff',
-                            300: '#d8b4fe',
-                            400: '#c084fc',
-                            500: '#a855f7',
-                            600: '#9333ea',
-                            700: '#7c3aed',
-                            800: '#6b21a8',
-                            900: '#581c87',
-                        },
-                        synk: {
-                            primary: '#8b5cf6',
-                            secondary: '#a78bfa',
-                            accent: '#c4b5fd',
-                            dark: '#0f0f23',
-                            darker: '#0a0a18',
-                        }
-                    },
-                    fontFamily: {
-                        orbitron: ['Orbitron', 'sans-serif'],
-                        inter: ['Inter', 'sans-serif'],
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                        'glow': 'glow 2s ease-in-out infinite alternate',
-                        'text-shimmer': 'text-shimmer 2s ease-in-out infinite alternate',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        },
-                        glow: {
-                            '0%': { boxShadow: '0 0 5px #8b5cf6, 0 0 10px #8b5cf6, 0 0 15px #8b5cf6' },
-                            '100%': { boxShadow: '0 0 10px #8b5cf6, 0 0 20px #8b5cf6, 0 0 30px #8b5cf6' },
-                        },
-                        'text-shimmer': {
-                            '0%': { 'background-position': '-200% center' },
-                            '100%': { 'background-position': '200% center' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    
     <style>
-        /* Custom CSS */
+        :root {
+            --primary: #8b5cf6;
+            --secondary: #a78bfa;
+            --accent: #c4b5fd;
+            --dark: #0f0f23;
+            --darker: #0a0a18;
+            --text-light: #e2e8f0;
+            --text-gray: #94a3b8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #0a0a18 100%);
-            min-height: 100vh;
-            color: white;
             font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 50%, #1a1a2e 100%);
+            color: white;
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
-
-        .cyber-border {
+        
+        .grid-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+        }
+        
+        /* Navigation */
+        nav {
+            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 1rem 1.5rem;
+            position: sticky;
+            top: 0;
+            background: rgba(15, 15, 35, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo-icon {
+            width: 2rem;
+            height: 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 0.5rem;
+        }
+        
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .nav-links {
+            display: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .connect-btn {
+            background: rgba(15, 15, 35, 0.8);
+            border: 1px solid var(--primary);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
             position: relative;
-            border: 1px solid #8b5cf6;
-            box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
-            border-radius: 12px;
+            overflow: hidden;
         }
-
-        .cyber-border::before {
+        
+        .connect-btn::before {
             content: '';
             position: absolute;
             top: -2px;
             left: -2px;
             right: -2px;
             bottom: -2px;
-            background: linear-gradient(45deg, #8b5cf6, #a78bfa, #c4b5fd, #a78bfa, #8b5cf6);
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent), var(--secondary), var(--primary));
             z-index: -1;
             border-radius: inherit;
             opacity: 0.7;
         }
-
-        .node-visual {
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, rgba(139, 92, 246, 0) 70%);
+        
+        .connect-btn:hover {
+            background: rgba(139, 92, 246, 0.1);
         }
-
-        .grid-pattern {
-            background-image: 
-                linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
+        
+        /* Hero Section */
+        .hero {
+            padding: 4rem 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
-
-        .shimmer-text {
-            background: linear-gradient(90deg, #8b5cf6, #a78bfa, #c4b5fd, #a78bfa, #8b5cf6);
-            background-size: 200% auto;
-            background-clip: text;
+        
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .badge {
+            display: inline-block;
+            border: 1px solid var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .badge::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent), var(--secondary), var(--primary));
+            z-index: -1;
+            border-radius: inherit;
+            opacity: 0.7;
+        }
+        
+        .badge-text {
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: text-shimmer 3s ease-in-out infinite;
+            background-clip: text;
+            color: transparent;
         }
-
-        .glass-effect {
+        
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            color: var(--text-gray);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+        
+        /* Countdown Timer */
+        .countdown {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            border: 1px solid var(--primary);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
             background: rgba(15, 15, 35, 0.6);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(139, 92, 246, 0.2);
+            position: relative;
         }
-
-        /* Scroll animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease-out;
+        
+        .countdown::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent), var(--secondary), var(--primary));
+            z-index: -1;
+            border-radius: inherit;
+            opacity: 0.3;
         }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+        
+        .countdown-label {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .timer-unit {
+            text-align: center;
+        }
+        
+        .timer-value {
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            font-weight: 700;
+        }
+        
+        .timer-label {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+        }
+        
+        /* CTA Buttons */
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+        
+        .primary-btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .primary-btn::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent), var(--secondary), var(--primary));
+            z-index: -1;
+            border-radius: inherit;
+            opacity: 0.7;
+        }
+        
+        .primary-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+        }
+        
+        .secondary-btn {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .secondary-btn:hover {
+            border-color: var(--primary);
+        }
+        
+        /* Scarcity Indicator */
+        .scarcity {
+            max-width: 400px;
+            margin: 0 auto;
+            border: 1px solid var(--primary);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            background: rgba(15, 15, 35, 0.4);
+            position: relative;
+        }
+        
+        .scarcity::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent), var(--secondary), var(--primary));
+            z-index: -1;
+            border-radius: inherit;
+            opacity: 0.3;
+        }
+        
+        .scarcity-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        
+        .scarcity-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            margin-bottom: 0.5rem;
+        }
+        
+        .scarcity-bar {
+            width: 100%;
+            height: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 0.25rem;
+            overflow: hidden;
+        }
+        
+        .scarcity-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0%;
+            border-radius: 0.25rem;
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            padding: 4rem 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        
+        .benefit-card {
+            border: 1px solid var(--primary);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            background: rgba(15, 15, 35, 0.4);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent), var(--secondary), var(--primary));
+            z-index: -1;
+            border-radius: inherit;
+            opacity: 0.3;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            background: rgba(15, 15, 35, 0.6);
+        }
+        
+        .benefit-icon {
+            width: 3rem;
+            height: 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .benefit-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .benefit-description {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Minting Section */
+        .minting {
+            padding: 4rem 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .minting-container {
+            border: 1px solid var(--primary);
+            border-radius: 1rem;
+            padding: 2rem;
+            background: rgba(15, 15, 35, 0.6);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+        
+        .minting-container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent), var(--secondary), var(--primary));
+            z-index: -1;
+            border-radius: inherit;
+            opacity: 0.3;
+        }
+        
+        .minting-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .minting-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+        }
+        
+        .minting-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        
+        .node-visual {
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, rgba(139, 92, 246, 0) 70%);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .node-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .node-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.25rem;
+        }
+        
+        .minting-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .info-label {
+            color: var(--text-gray);
+        }
+        
+        .info-value {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--secondary);
+        }
+        
+        .minting-box {
+            border: 1px solid var(--primary);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .minting-status {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .status-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 0.25rem;
+        }
+        
+        .status-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+        }
+        
+        .mint-btn {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--primary);
+            color: var(--text-gray);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: not-allowed;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .mint-btn::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent), var(--secondary), var(--primary));
+            z-index: -1;
+            border-radius: inherit;
+            opacity: 0.3;
+        }
+        
+        .price-info {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-gray);
+        }
+        
+        .price-item {
+            margin-bottom: 0.25rem;
+        }
+        
+        .price-highlight {
+            color: var(--secondary);
+        }
+        
+        .refund-notice {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            margin-top: 1rem;
+        }
+        
+        /* Wallet Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 1rem;
+        }
+        
+        .modal-content {
+            border: 1px solid var(--primary);
+            border-radius: 1rem;
+            padding: 2rem;
+            background: var(--darker);
+            max-width: 400px;
+            width: 100%;
+            position: relative;
+        }
+        
+        .modal-content::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent), var(--secondary), var(--primary));
+            z-index: -1;
+            border-radius: inherit;
+            opacity: 0.7;
+        }
+        
+        .modal-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .modal-text {
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+        
+        .modal-list li::before {
+            content: '✓';
+            color: var(--primary);
+            margin-right: 0.5rem;
+        }
+        
+        .modal-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .modal-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .modal-close {
+            width: 100%;
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .modal-close:hover {
+            border-color: var(--primary);
+        }
+        
+        /* Animated Elements */
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--primary);
+            opacity: 0.3;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .element-1 {
+            width: 1rem;
+            height: 1rem;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .element-2 {
+            width: 1.5rem;
+            height: 1.5rem;
+            top: 30%;
+            right: 20%;
+            animation-delay: 2s;
+        }
+        
+        .element-3 {
+            width: 1rem;
+            height: 1rem;
+            bottom: 25%;
+            left: 25%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        .pulse-element {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--secondary);
+            opacity: 0.5;
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        .pulse-1 {
+            width: 0.5rem;
+            height: 0.5rem;
+            top: 40%;
+            right: 10%;
+            animation-delay: 0s;
+        }
+        
+        .pulse-2 {
+            width: 0.75rem;
+            height: 0.75rem;
+            bottom: 30%;
+            right: 15%;
+            animation-delay: 1.5s;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(1.2);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+            
+            .cta-buttons {
+                flex-direction: row;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .minting-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .benefits-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
     </style>
 </head>
-<body class="grid-pattern">
+<body>
+    <div class="grid-pattern"></div>
+    
+    <!-- Animated Background Elements -->
+    <div class="floating-element element-1"></div>
+    <div class="floating-element element-2"></div>
+    <div class="floating-element element-3"></div>
+    <div class="pulse-element pulse-1"></div>
+    <div class="pulse-element pulse-2"></div>
+    
     <!-- Navigation -->
-    <nav class="border-b border-synk-primary/20 py-4 px-6 sticky top-0 z-40 glass-effect">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <div class="w-8 h-8 bg-gradient-to-br from-synk-primary to-synk-secondary rounded-lg"></div>
-                <span class="font-orbitron text-xl font-bold">WarpSynk</span>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <div class="logo-text">WarpSynk</div>
             </div>
-            <div class="hidden md:flex space-x-8">
-                <a href="#about" class="hover:text-synk-secondary transition-colors">The Covenant</a>
-                <a href="#benefits" class="hover:text-synk-secondary transition-colors">Benefits</a>
-                <a href="#timeline" class="hover:text-synk-secondary transition-colors">Timeline</a>
-                <a href="#faq" class="hover:text-synk-secondary transition-colors">FAQ</a>
+            
+            <div class="nav-links">
+                <a href="#about">The Covenant</a>
+                <a href="#benefits">Benefits</a>
+                <a href="#timeline">Timeline</a>
+                <a href="#faq">FAQ</a>
             </div>
-            <button id="connectWallet" class="cyber-border px-6 py-2 rounded-lg font-medium bg-synk-dark/80 hover:bg-synk-primary/10 transition-all">
-                Connect Wallet
-            </button>
+            
+            <button class="connect-btn" id="connectWallet">Connect Wallet</button>
         </div>
     </nav>
-
+    
     <!-- Hero Section -->
-    <section class="relative overflow-hidden py-20 px-6">
-        <div class="max-w-7xl mx-auto text-center">
-            <div class="inline-block cyber-border px-4 py-1 rounded-full mb-6 fade-in">
-                <span class="text-synk-secondary font-medium">Founders Edition</span>
+    <section class="hero" id="about">
+        <div class="hero-container">
+            <div class="badge">
+                <span class="badge-text">Founders Edition</span>
             </div>
-
-            <h1 class="font-orbitron text-5xl md:text-7xl font-bold mb-6 fade-in">
-                <span class="shimmer-text">
-                    You Are The Protocol
-                </span>
-            </h1>
-
-            <p class="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-8 leading-relaxed fade-in">
+            
+            <h1 class="hero-title">You Are The Protocol</h1>
+            
+            <p class="hero-subtitle">
                 The WarpSynk Steward Founders Edition. A lifetime seat for the architects of data sovereignty. 
-                <span class="text-synk-secondary font-semibold">This is not a collectible. This is a covenant.</span>
+                <span style="color: var(--secondary); font-weight: 600;">This is not a collectible. This is a covenant.</span>
             </p>
-
+            
             <!-- Countdown Timer -->
-            <div class="max-w-2xl mx-auto mb-8 fade-in">
-                <div class="cyber-border rounded-xl p-6 bg-synk-dark/60 backdrop-blur-sm">
-                    <p class="text-synk-secondary font-semibold mb-4">WHITELIST MINT BEGINS IN</p>
-                    <div id="countdown" class="flex justify-center space-x-4 md:space-x-8 font-orbitron">
-                        <div class="text-center">
-                            <div class="text-3xl md:text-5xl font-bold" id="days">02</div>
-                            <div class="text-sm text-gray-400">DAYS</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl md:text-5xl font-bold" id="hours">14</div>
-                            <div class="text-sm text-gray-400">HOURS</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl md:text-5xl font-bold" id="minutes">37</div>
-                            <div class="text-sm text-gray-400">MINUTES</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl md:text-5xl font-bold" id="seconds">12</div>
-                            <div class="text-sm text-gray-400">SECONDS</div>
-                        </div>
+            <div class="countdown">
+                <div class="countdown-label">WHITELIST MINT BEGINS IN</div>
+                <div class="timer">
+                    <div class="timer-unit">
+                        <div class="timer-value">02</div>
+                        <div class="timer-label">DAYS</div>
+                    </div>
+                    <div class="timer-unit">
+                        <div class="timer-value">14</div>
+                        <div class="timer-label">HOURS</div>
+                    </div>
+                    <div class="timer-unit">
+                        <div class="timer-value">37</div>
+                        <div class="timer-label">MINUTES</div>
+                    </div>
+                    <div class="timer-unit">
+                        <div class="timer-value">12</div>
+                        <div class="timer-label">SECONDS</div>
                     </div>
                 </div>
             </div>
-
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center fade-in">
-                <button id="joinAllowlist" class="cyber-border px-8 py-4 rounded-lg font-semibold bg-gradient-to-r from-synk-primary to-synk-secondary hover:from-synk-secondary hover:to-synk-primary transition-all transform hover:scale-105">
-                    Join the Allowlist
-                </button>
-                <a href="#benefits" class="px-8 py-4 rounded-lg font-semibold border border-synk-primary/30 hover:border-synk-primary transition-all">
-                    Explore the Covenant
-                </a>
+            
+            <div class="cta-buttons">
+                <button class="primary-btn" id="joinAllowlist">Join the Allowlist</button>
+                <button class="secondary-btn">Explore the Covenant</button>
             </div>
-
+            
             <!-- Scarcity Indicator -->
-            <div class="mt-12 cyber-border rounded-xl p-6 max-w-md mx-auto bg-synk-dark/40 fade-in">
-                <p class="font-orbitron text-lg mb-2">201 Seats. 0 Tied Votes. 1 Genesis.</p>
-                <div class="flex justify-between text-sm text-gray-400">
+            <div class="scarcity">
+                <div class="scarcity-text">201 Seats. 0 Tied Votes. 1 Genesis.</div>
+                <div class="scarcity-labels">
                     <span>50 Whitelist</span>
                     <span>100 Allowlist</span>
                     <span>51 Public</span>
                 </div>
-                <div class="w-full bg-gray-800 rounded-full h-2 mt-2">
-                    <div class="bg-gradient-to-r from-synk-primary to-synk-secondary h-2 rounded-full" style="width: 15%" id="mintProgress"></div>
+                <div class="scarcity-bar">
+                    <div class="scarcity-progress"></div>
                 </div>
             </div>
         </div>
-
-        <!-- Animated background elements -->
-        <div class="absolute top-1/4 left-10 w-4 h-4 bg-synk-primary rounded-full animate-pulse-slow opacity-60"></div>
-        <div class="absolute top-1/3 right-20 w-6 h-6 bg-synk-secondary rounded-full animate-float opacity-40"></div>
-        <div class="absolute bottom-1/4 left-1/4 w-3 h-3 bg-synk-accent rounded-full animate-pulse-slow opacity-70"></div>
     </section>
-
+    
     <!-- Benefits Section -->
-    <section id="benefits" class="py-20 px-6">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="font-orbitron text-4xl md:text-5xl font-bold text-center mb-16 fade-in">
-                <span class="shimmer-text">
-                    Steward Founder Benefits
-                </span>
-            </h2>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Benefit 1 -->
-                <div class="cyber-border rounded-xl p-6 bg-synk-dark/40 hover:bg-synk-dark/60 transition-all group fade-in">
-                    <div class="w-12 h-12 bg-gradient-to-br from-synk-primary to-synk-secondary rounded-lg mb-4 flex items-center justify-center group-hover:animate-glow">
-                        <span class="text-2xl">⚡</span>
-                    </div>
-                    <h3 class="font-orbitron text-xl font-semibold mb-3">Free Physical Node</h3>
-                    <p class="text-gray-300">$200-500 hardware, pre-configured to secure SynkMesh and earn rewards from day one.</p>
-                </div>
-
-                <!-- Benefit 2 -->
-                <div class="cyber-border rounded-xl p-6 bg-synk-dark/40 hover:bg-synk-dark/60 transition-all group fade-in">
-                    <div class="w-12 h-12 bg-gradient-to-br from-synk-primary to-synk-secondary rounded-lg mb-4 flex items-center justify-center group-hover:animate-glow">
-                        <span class="text-2xl">👑</span>
-                    </div>
-                    <h3 class="font-orbitron text-xl font-semibold mb-3">Lifetime Governance</h3>
-                    <p class="text-gray-300">Direct access to core founders forever. Influence protocol decisions indefinitely.</p>
-                </div>
-
-                <!-- Benefit 3 -->
-                <div class="cyber-border rounded-xl p-6 bg-synk-dark/40 hover:bg-synk-dark/60 transition-all group fade-in">
-                    <div class="w-12 h-12 bg-gradient-to-br from-synk-primary to-synk-secondary rounded-lg mb-4 flex items-center justify-center group-hover:animate-glow">
-                        <span class="text-2xl">💎</span>
-                    </div>
-                    <h3 class="font-orbitron text-xl font-semibold mb-3">Board Member Status</h3>
-                    <p class="text-gray-300">Strategic decision-making role. Name forever in Genesis Ledger as Founding Steward.</p>
-                </div>
-
-                <!-- Benefit 4 -->
-                <div class="cyber-border rounded-xl p-6 bg-synk-dark/40 hover:bg-synk-dark/60 transition-all group fade-in">
-                    <div class="w-12 h-12 bg-gradient-to-br from-synk-primary to-synk-secondary rounded-lg mb-4 flex items-center justify-center group-hover:animate-glow">
-                        <span class="text-2xl">🔧</span>
-                    </div>
-                    <h3 class="font-orbitron text-xl font-semibold mb-3">Early Tool Access</h3>
-                    <p class="text-gray-300">Test WarpSynk DataFi products before public release. October 2025 testnet access.</p>
-                </div>
-
-                <!-- Benefit 5 -->
-                <div class="cyber-border rounded-xl p-6 bg-synk-dark/40 hover:bg-synk-dark/60 transition-all group fade-in">
-                    <div class="w-12 h-12 bg-gradient-to-br from-synk-primary to-synk-secondary rounded-lg mb-4 flex items-center justify-center group-hover:animate-glow">
-                        <span class="text-2xl">🪙</span>
-                    </div>
-                    <h3 class="font-orbitron text-xl font-semibold mb-3">2% $WSYNK Supply</h3>
-                    <p class="text-gray-300">5,000,000 $WSYNK shared (~24,875 per NFT). $248 value at $0.01 launch price.</p>
-                </div>
-
-                <!-- Benefit 6 -->
-                <div class="cyber-border rounded-xl p-6 bg-synk-dark/40 hover:bg-synk-dark/60 transition-all group fade-in">
-                    <div class="w-12 h-12 bg-gradient-to-br from-synk-primary to-synk-secondary rounded-lg mb-4 flex items-center justify-center group-hover:animate-glow">
-                        <span class="text-2xl">🎖️</span>
-                    </div>
-                    <h3 class="font-orbitron text-xl font-semibold mb-3">Steward Badge</h3>
-                    <p class="text-gray-300">Visible in all governance dashboards and ecosystem apps. Permanent recognition.</p>
-                </div>
+    <section class="benefits" id="benefits">
+        <h2 class="section-title">Steward Founder Benefits</h2>
+        
+        <div class="benefits-grid">
+            <!-- Benefit 1 -->
+            <div class="benefit-card">
+                <div class="benefit-icon">⚡</div>
+                <h3 class="benefit-title">Free Physical Node</h3>
+                <p class="benefit-description">$200-500 hardware, pre-configured to secure SynkMesh and earn rewards from day one.</p>
+            </div>
+            
+            <!-- Benefit 2 -->
+            <div class="benefit-card">
+                <div class="benefit-icon">👑</div>
+                <h3 class="benefit-title">Lifetime Governance</h3>
+                <p class="benefit-description">Direct access to core founders forever. Influence protocol decisions indefinitely.</p>
+            </div>
+            
+            <!-- Benefit 3 -->
+            <div class="benefit-card">
+                <div class="benefit-icon">💎</div>
+                <h3 class="benefit-title">Board Member Status</h3>
+                <p class="benefit-description">Strategic decision-making role. Name forever in Genesis Ledger as Founding Steward.</p>
+            </div>
+            
+            <!-- Benefit 4 -->
+            <div class="benefit-card">
+                <div class="benefit-icon">🔧</div>
+                <h3 class="benefit-title">Early Tool Access</h3>
+                <p class="benefit-description">Test WarpSynk DataFi products before public release. October 2025 testnet access.</p>
+            </div>
+            
+            <!-- Benefit 5 -->
+            <div class="benefit-card">
+                <div class="benefit-icon">🪙</div>
+                <h3 class="benefit-title">2% $WSYNK Supply</h3>
+                <p class="benefit-description">5,000,000 $WSYNK shared (~24,875 per NFT). $248 value at $0.01 launch price.</p>
+            </div>
+            
+            <!-- Benefit 6 -->
+            <div class="benefit-card">
+                <div class="benefit-icon">🎖️</div>
+                <h3 class="benefit-title">Steward Badge</h3>
+                <p class="benefit-description">Visible in all governance dashboards and ecosystem apps. Permanent recognition.</p>
             </div>
         </div>
     </section>
-
+    
     <!-- Minting Section -->
-    <section id="mint" class="py-20 px-6">
-        <div class="max-w-4xl mx-auto">
-            <div class="cyber-border rounded-2xl p-8 bg-synk-dark/60 backdrop-blur-sm fade-in">
-                <h2 class="font-orbitron text-3xl md:text-4xl font-bold text-center mb-2">Mint Your Steward Seat</h2>
-                <p class="text-center text-gray-400 mb-8">Become one of the 201 Genesis Founders</p>
-
-                <div class="grid md:grid-cols-2 gap-8 items-center">
-                    <div>
-                        <div class="node-visual rounded-xl p-8 mb-6 text-center">
-                            <div class="text-6xl mb-4">🖥️</div>
-                            <div class="font-orbitron text-lg">WarpSynk Validator Node</div>
+    <section class="minting" id="mint">
+        <div class="minting-container">
+            <h2 class="minting-title">Mint Your Steward Seat</h2>
+            <p class="minting-subtitle">Become one of the 201 Genesis Founders</p>
+            
+            <div class="minting-content">
+                <div>
+                    <div class="node-visual">
+                        <div class="node-icon">🖥️</div>
+                        <div class="node-text">WarpSynk Validator Node</div>
+                    </div>
+                    
+                    <div class="minting-info">
+                        <div class="info-item">
+                            <span class="info-label">Total Supply:</span>
+                            <span class="info-value">201 NFTs</span>
                         </div>
-
-                        <div class="space-y-4">
-                            <div class="flex justify-between">
-                                <span>Total Supply:</span>
-                                <span class="font-orbitron text-synk-secondary">201 NFTs</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>Your Allocation:</span>
-                                <span class="font-orbitron text-synk-secondary">1 per wallet</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>Current Phase:</span>
-                                <span class="font-orbitron text-synk-secondary" id="mintPhase">Allowlist Signup</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>Minted:</span>
-                                <span class="font-orbitron text-synk-secondary" id="mintedCount">0/201</span>
-                            </div>
+                        <div class="info-item">
+                            <span class="info-label">Your Allocation:</span>
+                            <span class="info-value">1 per wallet</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Current Phase:</span>
+                            <span class="info-value">Allowlist Signup</span>
                         </div>
                     </div>
-
-                    <div>
-                        <div class="cyber-border rounded-xl p-6 mb-6">
-                            <div class="text-center mb-4">
-                                <div class="text-2xl font-orbitron text-synk-secondary" id="mintStatus">COMING SOON</div>
-                                <div class="text-sm text-gray-400" id="mintSubstatus">Minting begins after allowlist period</div>
-                            </div>
-
-                            <button id="mintButton" disabled class="w-full cyber-border py-4 rounded-lg font-semibold bg-gray-800 text-gray-400 cursor-not-allowed">
-                                Mint Your Seat (Coming Soon)
-                            </button>
-
-                            <div class="mt-4 text-center text-sm text-gray-400">
-                                <div>Whitelist: <span class="text-synk-secondary">50 NFTs at $400</span></div>
-                                <div>Allowlist: <span class="text-synk-secondary">100 NFTs at $500</span></div>
-                                <div>Public: <span class="text-synk-secondary">51 NFTs at $1,000</span></div>
-                            </div>
+                </div>
+                
+                <div>
+                    <div class="minting-box">
+                        <div class="minting-status">
+                            <div class="status-title">COMING SOON</div>
+                            <div class="status-subtitle">Minting begins after allowlist period</div>
                         </div>
-
-                        <div class="text-center">
-                            <p class="text-sm text-gray-400">60-day refund guarantee via smart contract</p>
+                        
+                        <button class="mint-btn" id="mintButton" disabled>Mint Your Seat (Coming Soon)</button>
+                        
+                        <div class="price-info">
+                            <div class="price-item">Whitelist: <span class="price-highlight">50 NFTs at $400</span></div>
+                            <div class="price-item">Allowlist: <span class="price-highlight">100 NFTs at $500</span></div>
+                            <div class="price-item">Public: <span class="price-highlight">51 NFTs at $1,000</span></div>
                         </div>
                     </div>
+                    
+                    <div class="refund-notice">60-day refund guarantee via smart contract</div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- FAQ Section -->
-    <section id="faq" class="py-20 px-6">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="font-orbitron text-4xl md:text-5xl font-bold text-center mb-16 fade-in">
-                <span class="shimmer-text">Frequently Asked Questions</span>
-            </h2>
-
-            <div class="space-y-4">
-                <div class="cyber-border rounded-xl p-6 bg-synk-dark/40 fade-in">
-                    <h3 class="font-orbitron text-lg font-semibold mb-2">What is the WarpSynk Steward Founders Edition?</h3>
-                    <p class="text-gray-300">A limited edition NFT representing a lifetime governance seat in the WarpSynk protocol, including physical hardware and exclusive benefits.</p>
-                </div>
-
-                <div class="cyber-border rounded-xl p-6 bg-synk-dark/40 fade-in">
-                    <h3 class="font-orbitron text-lg font-semibold mb-2">How do I get a physical node?</h3>
-                    <p class="text-gray-300">After minting, you'll receive a shipping form. Nodes ship within 60 days of mint completion.</p>
-                </div>
-
-                <div class="cyber-border rounded-xl p-6 bg-synk-dark/40 fade-in">
-                    <h3 class="font-orbitron text-lg font-semibold mb-2">What's the refund policy?</h3>
-                    <p class="text-gray-300">60-day money-back guarantee through our smart contract. After 60 days or node shipment, refunds are not available.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="border-t border-synk-primary/20 py-8 px-6">
-        <div class="max-w-7xl mx-auto text-center">
-            <div class="flex justify-center items-center space-x-2 mb-4">
-                <div class="w-6 h-6 bg-gradient-to-br from-synk-primary to-synk-secondary rounded-lg"></div>
-                <span class="font-orbitron text-lg font-bold">WarpSynk</span>
-            </div>
-            <p class="text-gray-400">Building the future of decentralized data sovereignty</p>
-        </div>
-    </footer>
-
+    
     <!-- Wallet Connection Modal -->
-    <div id="walletModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden z-50 flex items-center justify-center p-6">
-        <div class="cyber-border rounded-2xl p-8 max-w-md w-full bg-synk-darker">
-            <h3 class="font-orbitron text-2xl font-bold mb-4">Verify Your Interest</h3>
-            <p class="text-gray-300 mb-6">
+    <div class="modal" id="walletModal">
+        <div class="modal-content">
+            <h3 class="modal-title">Verify Your Interest</h3>
+            <p class="modal-text">
                 To ensure our stewards are committed builders, we require a wallet connection to join the exclusive allowlist.
             </p>
-
-            <ul class="space-y-3 mb-6">
-                <li class="flex items-center">
-                    <span class="text-synk-primary mr-2">✓</span>
-                    <span class="text-sm">Free, gasless signature to prove intent</span>
-                </li>
-                <li class="flex items-center">
-                    <span class="text-synk-primary mr-2">✓</span>
-                    <span class="text-sm">First to know when mint goes live</span>
-                </li>
-                <li class="flex items-center">
-                    <span class="text-synk-primary mr-2">✓</span>
-                    <span class="text-sm">Helps prevent bots and build genuine community</span>
-                </li>
+            
+            <ul class="modal-list">
+                <li>Free, gasless signature to prove intent</li>
+                <li>First to know when mint goes live</li>
+                <li>Helps prevent bots and build genuine community</li>
             </ul>
-
-            <button id="modalConnect" class="w-full cyber-border py-3 rounded-lg font-semibold bg-gradient-to-r from-synk-primary to-synk-secondary hover:from-synk-secondary hover:to-synk-primary transition-all mb-4">
-                Connect Wallet
-            </button>
-            <button id="closeModal" class="w-full py-3 rounded-lg font-semibold border border-synk-primary/30 hover:border-synk-primary transition-all">
-                Maybe Later
-            </button>
+            
+            <button class="modal-btn" id="modalConnect">Connect Wallet</button>
+            <button class="modal-close" id="closeModal">Maybe Later</button>
         </div>
     </div>
-
-    <!-- JSON Data (embedded in script tag) -->
-    <script type="application/json" id="appData">
-    {
-        "project": {
-            "name": "WarpSynk Steward Founders Edition",
-            "totalSupply": 201,
-            "mintPhases": {
-                "whitelist": { "supply": 50, "price": 400, "startDate": "2024-12-01T00:00:00Z" },
-                "allowlist": { "supply": 100, "price": 500, "startDate": "2024-12-08T00:00:00Z" },
-                "public": { "supply": 51, "price": 1000, "startDate": "2024-12-15T00:00:00Z" }
-            },
-            "benefits": [
-                "Free Physical Node",
-                "Lifetime Governance",
-                "Board Member Status",
-                "Early Tool Access",
-                "2% $WSYNK Supply",
-                "Steward Badge"
-            ]
-        },
-        "mintStatus": {
-            "currentPhase": "pre-mint",
-            "mintedCount": 0,
-            "whitelistMinted": 0,
-            "allowlistMinted": 0,
-            "publicMinted": 0
-        }
-    }
-    </script>
-
-    <!-- JavaScript -->
+    
     <script>
-        // App Configuration
-        const CONFIG = JSON.parse(document.getElementById('appData').textContent);
-        
         // DOM Elements
         const connectWalletBtn = document.getElementById('connectWallet');
         const joinAllowlistBtn = document.getElementById('joinAllowlist');
@@ -466,214 +998,82 @@
         const modalConnectBtn = document.getElementById('modalConnect');
         const closeModalBtn = document.getElementById('closeModal');
         const mintButton = document.getElementById('mintButton');
-        const countdownElements = {
-            days: document.getElementById('days'),
-            hours: document.getElementById('hours'),
-            minutes: document.getElementById('minutes'),
-            seconds: document.getElementById('seconds')
-        };
 
-        // App State
+        // Mock wallet connection state
         let walletConnected = false;
-        let allowlisted = false;
 
-        // Initialize Countdown
-        function initializeCountdown() {
-            const now = new Date();
-            const targetDate = new Date(CONFIG.project.mintPhases.whitelist.startDate);
-            
-            // If whitelist hasn't started, use that date
-            // Otherwise, use the next phase
-            const timeDiff = targetDate - now;
-            
-            if (timeDiff > 0) {
-                startCountdown(targetDate);
-            } else {
-                // Move to next phase countdown
-                const allowlistDate = new Date(CONFIG.project.mintPhases.allowlist.startDate);
-                if (allowlistDate - now > 0) {
-                    startCountdown(allowlistDate);
-                } else {
-                    const publicDate = new Date(CONFIG.project.mintPhases.public.startDate);
-                    startCountdown(publicDate);
-                }
-            }
-        }
-
-        function startCountdown(targetDate) {
-            function update() {
-                const now = new Date();
-                const timeLeft = targetDate - now;
-
-                if (timeLeft <= 0) {
-                    // Countdown finished
-                    Object.values(countdownElements).forEach(el => el.textContent = '00');
-                    updateMintStatus();
-                    return;
-                }
-
-                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-                countdownElements.days.textContent = days.toString().padStart(2, '0');
-                countdownElements.hours.textContent = hours.toString().padStart(2, '0');
-                countdownElements.minutes.textContent = minutes.toString().padStart(2, '0');
-                countdownElements.seconds.textContent = seconds.toString().padStart(2, '0');
-            }
-
-            update();
-            setInterval(update, 1000);
-        }
-
-        // Update Mint Status
-        function updateMintStatus() {
-            const now = new Date();
-            const whitelistStart = new Date(CONFIG.project.mintPhases.whitelist.startDate);
-            const allowlistStart = new Date(CONFIG.project.mintPhases.allowlist.startDate);
-            const publicStart = new Date(CONFIG.project.mintPhases.public.startDate);
-
-            let status, substatus, phase;
-
-            if (now < whitelistStart) {
-                status = 'COMING SOON';
-                substatus = 'Minting begins after allowlist period';
-                phase = 'Pre-Mint';
-            } else if (now < allowlistStart) {
-                status = 'WHITELIST LIVE';
-                substatus = 'Whitelist members can mint now';
-                phase = 'Whitelist';
-            } else if (now < publicStart) {
-                status = 'ALLOWLIST LIVE';
-                substatus = 'Allowlist members can mint now';
-                phase = 'Allowlist';
-            } else {
-                status = 'PUBLIC MINT LIVE';
-                substatus = 'Public minting is now available';
-                phase = 'Public';
-            }
-
-            document.getElementById('mintStatus').textContent = status;
-            document.getElementById('mintSubstatus').textContent = substatus;
-            document.getElementById('mintPhase').textContent = phase;
-
-            // Update progress bar (simulated)
-            const progress = (CONFIG.mintStatus.mintedCount / CONFIG.project.totalSupply) * 100;
-            document.getElementById('mintProgress').style.width = `${Math.max(5, progress)}%`;
-            document.getElementById('mintedCount').textContent = 
-                `${CONFIG.mintStatus.mintedCount}/${CONFIG.project.totalSupply}`;
-        }
-
-        // Scroll Animations
-        function initializeScrollAnimations() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            document.querySelectorAll('.fade-in').forEach(el => {
-                observer.observe(el);
-            });
-        }
-
-        // Wallet Connection Handlers
+        // Event Listeners
         connectWalletBtn.addEventListener('click', () => {
-            walletModal.classList.remove('hidden');
+            walletModal.style.display = 'flex';
         });
 
         joinAllowlistBtn.addEventListener('click', () => {
-            walletModal.classList.remove('hidden');
+            walletModal.style.display = 'flex';
         });
 
-        modalConnectBtn.addEventListener('click', async () => {
-            try {
-                // Simulate wallet connection
-                walletConnected = true;
-                allowlisted = true;
-                
-                // Update UI
-                connectWalletBtn.textContent = '0x7f3...c4b2';
-                connectWalletBtn.classList.add('bg-synk-primary/20');
-                
-                joinAllowlistBtn.textContent = 'Allowlisted!';
-                joinAllowlistBtn.classList.remove('from-synk-primary', 'to-synk-secondary');
-                joinAllowlistBtn.classList.add('bg-green-600', 'hover:bg-green-700');
-                joinAllowlistBtn.innerHTML = '✓ Allowlisted! We\'ll notify you.';
-                joinAllowlistBtn.disabled = true;
-
-                walletModal.classList.add('hidden');
-
-                // Show success notification
-                showNotification('Wallet connected successfully! You are now on the allowlist.');
-                
-            } catch (error) {
-                showNotification('Failed to connect wallet. Please try again.', 'error');
-            }
+        modalConnectBtn.addEventListener('click', () => {
+            // Simulate wallet connection
+            walletConnected = true;
+            connectWalletBtn.textContent = '0x7f3...c4b2';
+            connectWalletBtn.style.background = 'rgba(139, 92, 246, 0.2)';
+            joinAllowlistBtn.textContent = 'Allowlisted! We\'ll notify you.';
+            joinAllowlistBtn.style.background = 'rgb(22, 163, 74)';
+            joinAllowlistBtn.style.border = 'none';
+            joinAllowlistBtn.innerHTML = '✓ Allowlisted! We\'ll notify you.';
+            
+            walletModal.style.display = 'none';
+            
+            // Show success message
+            alert('Wallet connected successfully! You are now on the allowlist.');
         });
 
         closeModalBtn.addEventListener('click', () => {
-            walletModal.classList.add('hidden');
+            walletModal.style.display = 'none';
         });
-
-        // Notification System
-        function showNotification(message, type = 'success') {
-            const notification = document.createElement('div');
-            notification.className = `fixed top-4 right-4 cyber-border p-4 rounded-lg z-50 transform transition-all ${
-                type === 'success' ? 'bg-green-900/80' : 'bg-red-900/80'
-            }`;
-            notification.innerHTML = `
-                <div class="flex items-center space-x-2">
-                    <span>${type === 'success' ? '✓' : '⚠'}</span>
-                    <span>${message}</span>
-                </div>
-            `;
-            
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.remove();
-            }, 3000);
-        }
 
         // Close modal when clicking outside
         walletModal.addEventListener('click', (e) => {
             if (e.target === walletModal) {
-                walletModal.classList.add('hidden');
+                walletModal.style.display = 'none';
             }
         });
 
-        // Initialize everything when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            initializeCountdown();
-            initializeScrollAnimations();
-            updateMintStatus();
+        // Countdown Timer Simulation
+        function updateCountdown() {
+            // Set target date (2 days from now)
+            const targetDate = new Date();
+            targetDate.setDate(targetDate.getDate() + 2);
+            targetDate.setHours(14, 37, 12, 0);
             
-            // Simulate some minting activity
-            setInterval(() => {
-                if (CONFIG.mintStatus.mintedCount < CONFIG.project.totalSupply) {
-                    CONFIG.mintStatus.mintedCount += Math.floor(Math.random() * 3);
-                    updateMintStatus();
-                }
-            }, 5000);
-        });
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            
+            if (distance < 0) {
+                // Countdown finished
+                document.querySelector('.countdown-label').textContent = 'MINTING IS LIVE!';
+                return;
+            }
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // Update display
+            document.querySelectorAll('.timer-value')[0].textContent = days.toString().padStart(2, '0');
+            document.querySelectorAll('.timer-value')[1].textContent = hours.toString().padStart(2, '0');
+            document.querySelectorAll('.timer-value')[2].textContent = minutes.toString().padStart(2, '0');
+            document.querySelectorAll('.timer-value')[3].textContent = seconds.toString().padStart(2, '0');
+        }
 
-        // Add smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+        // Initialize
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+        
+        // Animate scarcity progress bar
+        setTimeout(() => {
+            document.querySelector('.scarcity-progress').style.width = '25%';
+        }, 1000);
     </script>
 </body>
 </html>

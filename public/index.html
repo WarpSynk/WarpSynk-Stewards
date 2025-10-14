@@ -3,1077 +3,645 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WarpSynk Steward Founders Edition</title>
+    <title>WarpSynk Steward - Founder Seats for Data Sovereignty</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: {
+                            purple: '#8b5cf6',
+                            pink: '#ec4899',
+                            blue: '#06b6d4',
+                            green: '#10b981'
+                        },
+                        dark: {
+                            900: '#0f0f23',
+                            800: '#1a1a2e',
+                            700: '#16213e'
+                        }
+                    },
+                    fontFamily: {
+                        orbitron: ['Orbitron', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif']
+                    },
+                    animation: {
+                        'pulse-glow': 'pulse-glow 2s ease-in-out infinite alternate',
+                        'float': 'float 6s ease-in-out infinite',
+                        'text-shimmer': 'text-shimmer 3s ease-in-out infinite alternate'
+                    },
+                    keyframes: {
+                        'pulse-glow': {
+                            '0%': { 'box-shadow': '0 0 20px rgba(139, 92, 246, 0.4)' },
+                            '100%': { 'box-shadow': '0 0 40px rgba(139, 92, 246, 0.8), 0 0 60px rgba(139, 92, 246, 0.6)' }
+                        },
+                        'float': {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        'text-shimmer': {
+                            '0%': { 'background-position': '0% 50%' },
+                            '100%': { 'background-position': '100% 50%' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        :root {
-            --primary: #8b5cf6;
-            --secondary: #a78bfa;
-            --accent: #c4b5fd;
-            --dark: #0f0f23;
-            --darker: #0a0a18;
-            --text-light: #e2e8f0;
-            --text-gray: #94a3b8;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 50%, #1a1a2e 100%);
-            color: white;
-            min-height: 100vh;
-            line-height: 1.6;
-            overflow-x: hidden;
+        .gradient-bg {
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
         }
         
         .grid-pattern {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
             background-image: 
-                linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
+                linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px);
             background-size: 50px 50px;
-            z-index: -1;
         }
         
-        /* Navigation */
-        nav {
-            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
-            padding: 1rem 1.5rem;
-            position: sticky;
-            top: 0;
-            background: rgba(15, 15, 35, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 100;
-        }
-        
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .logo-icon {
-            width: 2rem;
-            height: 2rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 0.5rem;
-        }
-        
-        .logo-text {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-        
-        .nav-links {
-            display: none;
-            gap: 2rem;
-        }
-        
-        .nav-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .nav-links a:hover {
-            color: var(--secondary);
-        }
-        
-        .connect-btn {
-            background: rgba(15, 15, 35, 0.8);
-            border: 1px solid var(--primary);
-            color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 0.5rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .connect-btn::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent), var(--secondary), var(--primary));
-            z-index: -1;
-            border-radius: inherit;
-            opacity: 0.7;
-        }
-        
-        .connect-btn:hover {
-            background: rgba(139, 92, 246, 0.1);
-        }
-        
-        /* Hero Section */
-        .hero {
-            padding: 4rem 1.5rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .badge {
-            display: inline-block;
-            border: 1px solid var(--primary);
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-        
-        .badge::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent), var(--secondary), var(--primary));
-            z-index: -1;
-            border-radius: inherit;
-            opacity: 0.7;
-        }
-        
-        .badge-text {
-            color: var(--secondary);
-            font-weight: 500;
-        }
-        
-        .hero-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(2.5rem, 5vw, 5rem);
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .hero-subtitle {
-            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-            color: var(--text-gray);
-            max-width: 800px;
-            margin: 0 auto 2rem;
-            line-height: 1.6;
-        }
-        
-        /* Countdown Timer */
-        .countdown {
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            border: 1px solid var(--primary);
-            border-radius: 0.75rem;
-            padding: 1.5rem;
+        .glass-effect {
             background: rgba(15, 15, 35, 0.6);
             backdrop-filter: blur(10px);
-            position: relative;
-        }
-        
-        .countdown::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent), var(--secondary), var(--primary));
-            z-index: -1;
-            border-radius: inherit;
-            opacity: 0.3;
-        }
-        
-        .countdown-label {
-            color: var(--secondary);
-            font-weight: 600;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-        
-        .timer {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            font-family: 'Orbitron', sans-serif;
-        }
-        
-        .timer-unit {
-            text-align: center;
-        }
-        
-        .timer-value {
-            font-size: clamp(1.5rem, 4vw, 3rem);
-            font-weight: 700;
-        }
-        
-        .timer-label {
-            font-size: 0.75rem;
-            color: var(--text-gray);
-        }
-        
-        /* CTA Buttons */
-        .cta-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 3rem;
-        }
-        
-        .primary-btn {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .primary-btn::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent), var(--secondary), var(--primary));
-            z-index: -1;
-            border-radius: inherit;
-            opacity: 0.7;
-        }
-        
-        .primary-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
-        }
-        
-        .secondary-btn {
-            background: transparent;
-            color: white;
             border: 1px solid rgba(139, 92, 246, 0.3);
-            padding: 1rem 2rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
         }
         
-        .secondary-btn:hover {
-            border-color: var(--primary);
-        }
-        
-        /* Scarcity Indicator */
-        .scarcity {
-            max-width: 400px;
-            margin: 0 auto;
-            border: 1px solid var(--primary);
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            background: rgba(15, 15, 35, 0.4);
-            position: relative;
-        }
-        
-        .scarcity::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent), var(--secondary), var(--primary));
-            z-index: -1;
-            border-radius: inherit;
-            opacity: 0.3;
-        }
-        
-        .scarcity-text {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-            text-align: center;
-        }
-        
-        .scarcity-labels {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.75rem;
-            color: var(--text-gray);
-            margin-bottom: 0.5rem;
-        }
-        
-        .scarcity-bar {
-            width: 100%;
-            height: 0.5rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 0.25rem;
-            overflow: hidden;
-        }
-        
-        .scarcity-progress {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            width: 0%;
-            border-radius: 0.25rem;
-        }
-        
-        /* Benefits Section */
-        .benefits {
-            padding: 4rem 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .section-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(2rem, 4vw, 3rem);
-            text-align: center;
-            margin-bottom: 3rem;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
+        .text-gradient {
+            background: linear-gradient(135deg, #8b5cf6, #ec4899, #06b6d4);
             -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: text-shimmer 3s ease-in-out infinite alternate;
         }
         
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-        
-        .benefit-card {
-            border: 1px solid var(--primary);
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            background: rgba(15, 15, 35, 0.4);
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .benefit-card::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent), var(--secondary), var(--primary));
-            z-index: -1;
-            border-radius: inherit;
-            opacity: 0.3;
-        }
-        
-        .benefit-card:hover {
+        .hover-lift:hover {
             transform: translateY(-5px);
-            background: rgba(15, 15, 35, 0.6);
+            transition: all 0.3s ease;
         }
         
-        .benefit-icon {
-            width: 3rem;
-            height: 3rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-        
-        .benefit-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .benefit-description {
-            color: var(--text-gray);
-            font-size: 0.9rem;
-        }
-        
-        /* Minting Section */
-        .minting {
-            padding: 4rem 1.5rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
-        .minting-container {
-            border: 1px solid var(--primary);
-            border-radius: 1rem;
-            padding: 2rem;
-            background: rgba(15, 15, 35, 0.6);
-            backdrop-filter: blur(10px);
-            position: relative;
-        }
-        
-        .minting-container::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent), var(--secondary), var(--primary));
-            z-index: -1;
-            border-radius: inherit;
-            opacity: 0.3;
-        }
-        
-        .minting-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            text-align: center;
-            margin-bottom: 0.5rem;
-        }
-        
-        .minting-subtitle {
-            text-align: center;
-            color: var(--text-gray);
-            margin-bottom: 2rem;
-        }
-        
-        .minting-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-        }
-        
-        .node-visual {
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, rgba(139, 92, 246, 0) 70%);
-            border-radius: 0.75rem;
-            padding: 2rem;
-            text-align: center;
-        }
-        
-        .node-icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-        }
-        
-        .node-text {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.25rem;
-        }
-        
-        .minting-info {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        
-        .info-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .info-label {
-            color: var(--text-gray);
-        }
-        
-        .info-value {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--secondary);
-        }
-        
-        .minting-box {
-            border: 1px solid var(--primary);
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            margin-top: 1rem;
-        }
-        
-        .minting-status {
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-        
-        .status-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            color: var(--secondary);
-            margin-bottom: 0.25rem;
-        }
-        
-        .status-subtitle {
-            font-size: 0.8rem;
-            color: var(--text-gray);
-        }
-        
-        .mint-btn {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid var(--primary);
-            color: var(--text-gray);
-            padding: 1rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            cursor: not-allowed;
-            margin-bottom: 1rem;
-            position: relative;
-        }
-        
-        .mint-btn::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent), var(--secondary), var(--primary));
-            z-index: -1;
-            border-radius: inherit;
-            opacity: 0.3;
-        }
-        
-        .price-info {
-            text-align: center;
-            font-size: 0.8rem;
-            color: var(--text-gray);
-        }
-        
-        .price-item {
-            margin-bottom: 0.25rem;
-        }
-        
-        .price-highlight {
-            color: var(--secondary);
-        }
-        
-        .refund-notice {
-            text-align: center;
-            font-size: 0.75rem;
-            color: var(--text-gray);
-            margin-top: 1rem;
-        }
-        
-        /* Wallet Modal */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(5px);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            padding: 1rem;
-        }
-        
-        .modal-content {
-            border: 1px solid var(--primary);
-            border-radius: 1rem;
-            padding: 2rem;
-            background: var(--darker);
-            max-width: 400px;
-            width: 100%;
-            position: relative;
-        }
-        
-        .modal-content::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent), var(--secondary), var(--primary));
-            z-index: -1;
-            border-radius: inherit;
-            opacity: 0.7;
-        }
-        
-        .modal-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .modal-text {
-            color: var(--text-gray);
-            margin-bottom: 1.5rem;
-        }
-        
-        .modal-list {
-            list-style: none;
-            margin-bottom: 1.5rem;
-        }
-        
-        .modal-list li {
-            display: flex;
-            align-items: center;
-            margin-bottom: 0.75rem;
-        }
-        
-        .modal-list li::before {
-            content: '✓';
-            color: var(--primary);
-            margin-right: 0.5rem;
-        }
-        
-        .modal-btn {
-            width: 100%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            cursor: pointer;
-            margin-bottom: 1rem;
-            transition: all 0.3s;
-        }
-        
-        .modal-btn:hover {
-            transform: translateY(-2px);
-        }
-        
-        .modal-close {
-            width: 100%;
-            background: transparent;
-            color: white;
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            padding: 1rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .modal-close:hover {
-            border-color: var(--primary);
-        }
-        
-        /* Animated Elements */
-        .floating-element {
-            position: absolute;
-            border-radius: 50%;
-            background: var(--primary);
-            opacity: 0.3;
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        .element-1 {
-            width: 1rem;
-            height: 1rem;
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-        
-        .element-2 {
-            width: 1.5rem;
-            height: 1.5rem;
-            top: 30%;
-            right: 20%;
-            animation-delay: 2s;
-        }
-        
-        .element-3 {
-            width: 1rem;
-            height: 1rem;
-            bottom: 25%;
-            left: 25%;
-            animation-delay: 4s;
-        }
-        
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-        
-        .pulse-element {
-            position: absolute;
-            border-radius: 50%;
-            background: var(--secondary);
-            opacity: 0.5;
-            animation: pulse 3s ease-in-out infinite;
-        }
-        
-        .pulse-1 {
-            width: 0.5rem;
-            height: 0.5rem;
-            top: 40%;
-            right: 10%;
-            animation-delay: 0s;
-        }
-        
-        .pulse-2 {
-            width: 0.75rem;
-            height: 0.75rem;
-            bottom: 30%;
-            right: 15%;
-            animation-delay: 1.5s;
-        }
-        
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 0.3;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.7;
-                transform: scale(1.2);
-            }
-        }
-        
-        /* Responsive Design */
-        @media (min-width: 768px) {
-            .nav-links {
-                display: flex;
-            }
-            
-            .cta-buttons {
-                flex-direction: row;
-            }
-            
-            .benefits-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .minting-content {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-        
-        @media (min-width: 1024px) {
-            .benefits-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
+        .neon-glow {
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4),
+                        0 0 40px rgba(139, 92, 246, 0.3),
+                        0 0 60px rgba(139, 92, 246, 0.2);
         }
     </style>
 </head>
-<body>
-    <div class="grid-pattern"></div>
-    
-    <!-- Animated Background Elements -->
-    <div class="floating-element element-1"></div>
-    <div class="floating-element element-2"></div>
-    <div class="floating-element element-3"></div>
-    <div class="pulse-element pulse-1"></div>
-    <div class="pulse-element pulse-2"></div>
-    
+<body class="gradient-bg text-white font-inter min-h-screen">
+    <!-- Background Elements -->
+    <div class="fixed inset-0 grid-pattern pointer-events-none"></div>
+    <div class="fixed w-4 h-4 bg-neon-purple rounded-full top-1/4 left-1/4 opacity-30 animate-pulse-glow"></div>
+    <div class="fixed w-6 h-6 bg-neon-pink rounded-full top-1/3 right-1/4 opacity-20 animate-float"></div>
+
     <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">
-                <div class="logo-icon"></div>
-                <div class="logo-text">WarpSynk</div>
+    <nav class="glass-effect sticky top-0 z-50 border-b border-neon-purple/30">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-neon-purple to-neon-pink rounded-lg neon-glow"></div>
+                    <span class="font-orbitron text-xl font-bold text-gradient">WarpSynk Stewards</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#protocol" class="hover:text-neon-purple transition-colors">Protocol</a>
+                    <a href="#benefits" class="hover:text-neon-purple transition-colors">Benefits</a>
+                    <a href="#governance" class="hover:text-neon-purple transition-colors">Governance</a>
+                    <a href="#team" class="hover:text-neon-purple transition-colors">Team</a>
+                    <a href="#resources" class="hover:text-neon-purple transition-colors">Resources</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <a href="https://warpsynk.xyz/home" target="_blank" class="glass-effect px-4 py-2 rounded-lg font-semibold hover-lift border border-neon-purple/50 hover:border-neon-purple transition-all duration-300">
+                        See Live Protocol
+                    </a>
+                    <button onclick="scrollToWhitelist()" class="bg-gradient-to-r from-neon-purple to-neon-pink px-6 py-2 rounded-lg font-semibold hover-lift transition-all duration-300 neon-glow">
+                        Apply for Whitelist
+                    </button>
+                </div>
             </div>
-            
-            <div class="nav-links">
-                <a href="#about">The Covenant</a>
-                <a href="#benefits">Benefits</a>
-                <a href="#timeline">Timeline</a>
-                <a href="#faq">FAQ</a>
-            </div>
-            
-            <button class="connect-btn" id="connectWallet">Connect Wallet</button>
         </div>
     </nav>
-    
+
     <!-- Hero Section -->
-    <section class="hero" id="about">
-        <div class="hero-container">
-            <div class="badge">
-                <span class="badge-text">Founders Edition</span>
+    <section class="relative py-20 px-4">
+        <div class="container mx-auto max-w-6xl text-center">
+            <div class="inline-block glass-effect px-6 py-2 rounded-full mb-8 border border-neon-purple/50">
+                <span class="text-neon-purple font-semibold">201 Lifetime NFTs • Only 50 Whitelist Spots</span>
             </div>
             
-            <h1 class="hero-title">You Are The Protocol</h1>
+            <h1 class="font-orbitron text-5xl md:text-7xl font-bold mb-6 text-gradient">
+                Founder Seats for Data Sovereignty
+            </h1>
             
-            <p class="hero-subtitle">
-                The WarpSynk Steward Founders Edition. A lifetime seat for the architects of data sovereignty. 
-                <span style="color: var(--secondary); font-weight: 600;">This is not a collectible. This is a covenant.</span>
+            <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                Join the 201 Founding Stewards shaping the future of decentralized data economy
             </p>
-            
-            <!-- Countdown Timer -->
-            <div class="countdown">
-                <div class="countdown-label">WHITELIST MINT BEGINS IN</div>
-                <div class="timer">
-                    <div class="timer-unit">
-                        <div class="timer-value">02</div>
-                        <div class="timer-label">DAYS</div>
-                    </div>
-                    <div class="timer-unit">
-                        <div class="timer-value">14</div>
-                        <div class="timer-label">HOURS</div>
-                    </div>
-                    <div class="timer-unit">
-                        <div class="timer-value">37</div>
-                        <div class="timer-label">MINUTES</div>
-                    </div>
-                    <div class="timer-unit">
-                        <div class="timer-value">12</div>
-                        <div class="timer-label">SECONDS</div>
-                    </div>
+
+            <!-- Whitelist Counter -->
+            <div class="glass-effect rounded-2xl p-6 max-w-md mx-auto mb-8 border border-neon-purple/30">
+                <div class="font-orbitron text-neon-green text-2xl mb-2" id="whitelistCounter">27/50</div>
+                <div class="text-gray-400">Whitelist Applications Received</div>
+                <div class="w-full bg-gray-700 rounded-full h-2 mt-4">
+                    <div class="bg-gradient-to-r from-neon-purple to-neon-pink h-2 rounded-full" style="width: 54%"></div>
                 </div>
             </div>
-            
-            <div class="cta-buttons">
-                <button class="primary-btn" id="joinAllowlist">Join the Allowlist</button>
-                <button class="secondary-btn">Explore the Covenant</button>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                <button onclick="scrollToWhitelist()" class="bg-gradient-to-r from-neon-purple to-neon-pink px-8 py-4 rounded-lg font-bold text-lg hover-lift transition-all duration-300 neon-glow">
+                    Apply for Whitelist - 0.5 SOL
+                </button>
+                <a href="https://warpsynk.xyz/home" target="_blank" class="glass-effect border border-neon-purple/50 px-8 py-4 rounded-lg font-bold text-lg hover-lift transition-all duration-300">
+                    🚀 See Live Protocol
+                </a>
             </div>
-            
-            <!-- Scarcity Indicator -->
-            <div class="scarcity">
-                <div class="scarcity-text">201 Seats. 0 Tied Votes. 1 Genesis.</div>
-                <div class="scarcity-labels">
-                    <span>50 Whitelist</span>
-                    <span>100 Allowlist</span>
-                    <span>51 Public</span>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="py-16 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+                <div class="glass-effect rounded-xl p-6 border border-neon-purple/30">
+                    <div class="text-3xl mb-4">⚡</div>
+                    <h3 class="font-orbitron text-xl mb-3">Built on Solana</h3>
+                    <p class="text-gray-400">Leveraging high-speed, low-cost blockchain infrastructure</p>
                 </div>
-                <div class="scarcity-bar">
-                    <div class="scarcity-progress"></div>
+                <div class="glass-effect rounded-xl p-6 border border-neon-blue/30">
+                    <div class="text-3xl mb-4">🛡️</div>
+                    <h3 class="font-orbitron text-xl mb-3">Web3 Native</h3>
+                    <p class="text-gray-400">Designed by builders for the decentralized future</p>
+                </div>
+                <div class="glass-effect rounded-xl p-6 border border-neon-green/30">
+                    <div class="text-3xl mb-4">🌐</div>
+                    <h3 class="font-orbitron text-xl mb-3">Community Led</h3>
+                    <p class="text-gray-400">500+ builders already in our ecosystem</p>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- Benefits Section -->
-    <section class="benefits" id="benefits">
-        <h2 class="section-title">Steward Founder Benefits</h2>
-        
-        <div class="benefits-grid">
-            <!-- Benefit 1 -->
-            <div class="benefit-card">
-                <div class="benefit-icon">⚡</div>
-                <h3 class="benefit-title">Free Physical Node</h3>
-                <p class="benefit-description">$200-500 hardware, pre-configured to secure SynkMesh and earn rewards from day one.</p>
-            </div>
+
+    <!-- Protocol Section -->
+    <section id="protocol" class="py-20 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="font-orbitron text-4xl md:text-5xl text-center mb-4 text-gradient">What You're Governing</h2>
+            <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">WarpSynk is a live protocol building the infrastructure for data sovereignty</p>
             
-            <!-- Benefit 2 -->
-            <div class="benefit-card">
-                <div class="benefit-icon">👑</div>
-                <h3 class="benefit-title">Lifetime Governance</h3>
-                <p class="benefit-description">Direct access to core founders forever. Influence protocol decisions indefinitely.</p>
-            </div>
-            
-            <!-- Benefit 3 -->
-            <div class="benefit-card">
-                <div class="benefit-icon">💎</div>
-                <h3 class="benefit-title">Board Member Status</h3>
-                <p class="benefit-description">Strategic decision-making role. Name forever in Genesis Ledger as Founding Steward.</p>
-            </div>
-            
-            <!-- Benefit 4 -->
-            <div class="benefit-card">
-                <div class="benefit-icon">🔧</div>
-                <h3 class="benefit-title">Early Tool Access</h3>
-                <p class="benefit-description">Test WarpSynk DataFi products before public release. October 2025 testnet access.</p>
-            </div>
-            
-            <!-- Benefit 5 -->
-            <div class="benefit-card">
-                <div class="benefit-icon">🪙</div>
-                <h3 class="benefit-title">2% $WSYNK Supply</h3>
-                <p class="benefit-description">5,000,000 $WSYNK shared (~24,875 per NFT). $248 value at $0.01 launch price.</p>
-            </div>
-            
-            <!-- Benefit 6 -->
-            <div class="benefit-card">
-                <div class="benefit-icon">🎖️</div>
-                <h3 class="benefit-title">Steward Badge</h3>
-                <p class="benefit-description">Visible in all governance dashboards and ecosystem apps. Permanent recognition.</p>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Minting Section -->
-    <section class="minting" id="mint">
-        <div class="minting-container">
-            <h2 class="minting-title">Mint Your Steward Seat</h2>
-            <p class="minting-subtitle">Become one of the 201 Genesis Founders</p>
-            
-            <div class="minting-content">
-                <div>
-                    <div class="node-visual">
-                        <div class="node-icon">🖥️</div>
-                        <div class="node-text">WarpSynk Validator Node</div>
+            <div class="glass-effect rounded-2xl p-8 border border-neon-purple/30">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="font-orbitron text-2xl mb-4 text-neon-purple">Live Protocol, Real Impact</h3>
+                        <p class="text-gray-300 mb-6">Stewards govern an active protocol with real users and ongoing development. This isn't theoretical - it's happening now.</p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-6 h-6 bg-neon-green rounded-full flex items-center justify-center">
+                                    <span class="text-xs">✓</span>
+                                </div>
+                                <span>Active protocol with real users</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-6 h-6 bg-neon-green rounded-full flex items-center justify-center">
+                                    <span class="text-xs">✓</span>
+                                </div>
+                                <span>Ongoing development and updates</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-6 h-6 bg-neon-green rounded-full flex items-center justify-center">
+                                    <span class="text-xs">✓</span>
+                                </div>
+                                <span>Clear roadmap and vision</span>
+                            </div>
+                        </div>
+                        
+                        <a href="https://warpsynk.xyz/home" target="_blank" class="inline-block mt-6 glass-effect border border-neon-purple/50 px-6 py-3 rounded-lg font-semibold hover-lift transition-all duration-300">
+                            Explore WarpSynk Protocol →
+                        </a>
                     </div>
                     
-                    <div class="minting-info">
-                        <div class="info-item">
-                            <span class="info-label">Total Supply:</span>
-                            <span class="info-value">201 NFTs</span>
+                    <div class="bg-dark-800 rounded-xl p-8 border border-neon-purple/50 text-center">
+                        <div class="text-6xl mb-4">🚀</div>
+                        <div class="font-orbitron text-neon-purple text-xl">Live Platform</div>
+                        <div class="text-gray-400 mt-2">Active Development</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="py-20 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="font-orbitron text-4xl md:text-5xl text-center mb-4 text-gradient">Steward Benefits</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                <!-- Benefit 1 -->
+                <div class="glass-effect rounded-xl p-6 hover-lift border border-neon-purple/30 transition-all duration-300">
+                    <div class="w-12 h-12 bg-gradient-to-br from-neon-purple to-neon-pink rounded-lg flex items-center justify-center mb-4">
+                        <span class="text-xl">⚡</span>
+                    </div>
+                    <h3 class="font-orbitron text-xl mb-3">Free Validator Node</h3>
+                    <p class="text-gray-400">Pre-configured SynkNode with 20-40% sync fees + $WSYNK rewards</p>
+                </div>
+
+                <!-- Benefit 2 -->
+                <div class="glass-effect rounded-xl p-6 hover-lift border border-neon-purple/30 transition-all duration-300">
+                    <div class="w-12 h-12 bg-gradient-to-br from-neon-purple to-neon-blue rounded-lg flex items-center justify-center mb-4">
+                        <span class="text-xl">💎</span>
+                    </div>
+                    <h3 class="font-orbitron text-xl mb-3">Token Allocation</h3>
+                    <p class="text-gray-400">36,764 $WSYNK per NFT at minimum $0.005 launch price</p>
+                </div>
+
+                <!-- Benefit 3 -->
+                <div class="glass-effect rounded-xl p-6 hover-lift border border-neon-purple/30 transition-all duration-300">
+                    <div class="w-12 h-12 bg-gradient-to-br from-neon-pink to-neon-purple rounded-lg flex items-center justify-center mb-4">
+                        <span class="text-xl">🏛️</span>
+                    </div>
+                    <h3 class="font-orbitron text-xl mb-3">Lifetime Governance</h3>
+                    <p class="text-gray-400">Direct influence on protocol decisions indefinitely</p>
+                </div>
+
+                <!-- Benefit 4 -->
+                <div class="glass-effect rounded-xl p-6 hover-lift border border-neon-purple/30 transition-all duration-300">
+                    <div class="w-12 h-12 bg-gradient-to-br from-neon-blue to-neon-green rounded-lg flex items-center justify-center mb-4">
+                        <span class="text-xl">🔮</span>
+                    </div>
+                    <h3 class="font-orbitron text-xl mb-3">Early Access</h3>
+                    <p class="text-gray-400">Test DataFi products before public release</p>
+                </div>
+
+                <!-- Benefit 5 -->
+                <div class="glass-effect rounded-xl p-6 hover-lift border border-neon-purple/30 transition-all duration-300">
+                    <div class="w-12 h-12 bg-gradient-to-br from-neon-green to-neon-blue rounded-lg flex items-center justify-center mb-4">
+                        <span class="text-xl">🎖️</span>
+                    </div>
+                    <h3 class="font-orbitron text-xl mb-3">Genesis Legacy</h3>
+                    <p class="text-gray-400">Name forever in Genesis Ledger as Founding Steward</p>
+                </div>
+
+                <!-- Benefit 6 -->
+                <div class="glass-effect rounded-xl p-6 hover-lift border border-neon-purple/30 transition-all duration-300">
+                    <div class="w-12 h-12 bg-gradient-to-br from-neon-purple to-neon-green rounded-lg flex items-center justify-center mb-4">
+                        <span class="text-xl">🛡️</span>
+                    </div>
+                    <h3 class="font-orbitron text-xl mb-3">Refund Protection</h3>
+                    <p class="text-gray-400">60-day full refund guarantee</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Governance Section -->
+    <section id="governance" class="py-20 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <div class="glass-effect rounded-2xl p-8 border border-neon-purple/30 neon-glow">
+                <h2 class="font-orbitron text-4xl text-center mb-8 text-gradient">Democratic Governance</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="font-orbitron text-2xl mb-4 text-neon-purple">One Wallet = One Vote</h3>
+                        <p class="text-gray-300 mb-6">True democratic governance with no whale domination. Each steward has equal voting power in protocol decisions.</p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-6 h-6 bg-neon-green rounded-full flex items-center justify-center">
+                                    <span class="text-xs">✓</span>
+                                </div>
+                                <span>101/201 votes required to pass decisions</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-6 h-6 bg-neon-green rounded-full flex items-center justify-center">
+                                    <span class="text-xs">✓</span>
+                                </div>
+                                <span>Prevents tied votes and deadlocks</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-6 h-6 bg-neon-green rounded-full flex items-center justify-center">
+                                    <span class="text-xs">✓</span>
+                                </div>
+                                <span>Requires broad consensus (50%+ of stewards)</span>
+                            </div>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Your Allocation:</span>
-                            <span class="info-value">1 per wallet</span>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="inline-block bg-dark-800 rounded-2xl p-8 border border-neon-purple/50">
+                            <div class="font-orbitron text-6xl text-neon-purple mb-4">201</div>
+                            <div class="text-gray-400">Founding Stewards</div>
+                            <div class="mt-4 font-orbitron text-neon-green">50.2% Majority Required</div>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Current Phase:</span>
-                            <span class="info-value">Allowlist Signup</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Section -->
+    <section class="py-20 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="font-orbitron text-4xl md:text-5xl text-center mb-4 text-gradient">Value Proposition</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <!-- Tangible Value -->
+                <div class="glass-effect rounded-2xl p-8 border border-neon-green/30">
+                    <h3 class="font-orbitron text-2xl mb-6 text-neon-green">Tangible Value</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center py-3 border-b border-gray-700">
+                            <span>Validator Node</span>
+                            <span class="font-orbitron text-neon-green">$75</span>
                         </div>
+                        <div class="flex justify-between items-center py-3 border-b border-gray-700">
+                            <span>$WSYNK Allocation</span>
+                            <span class="font-orbitron text-neon-green">$183.82</span>
+                        </div>
+                        <div class="flex justify-between items-center py-3 text-xl font-bold">
+                            <span>Total Tangible</span>
+                            <span class="font-orbitron text-neon-green">$258.82</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Intangible Value -->
+                <div class="glass-effect rounded-2xl p-8 border border-neon-blue/30">
+                    <h3 class="font-orbitron text-2xl mb-6 text-neon-blue">Intangible Value</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center py-3 border-b border-gray-700">
+                            <span>Lifetime Founder Seat</span>
+                            <span class="font-orbitron text-neon-blue">Priceless</span>
+                        </div>
+                        <div class="flex justify-between items-center py-3 border-b border-gray-700">
+                            <span>Early Access</span>
+                            <span class="font-orbitron text-neon-blue">$75</span>
+                        </div>
+                        <div class="flex justify-between items-center py-3 border-b border-gray-700">
+                            <span>Steward Prestige</span>
+                            <span class="font-orbitron text-neon-blue">$150</span>
+                        </div>
+                        <div class="flex justify-between items-center py-3 text-xl font-bold">
+                            <span>Total Intangible</span>
+                            <span class="font-orbitron text-neon-blue">~$425</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROI Highlight -->
+            <div class="glass-effect rounded-2xl p-8 text-center border border-neon-purple/30 neon-glow">
+                <h3 class="font-orbitron text-2xl mb-4 text-gradient">Early Backer Advantage</h3>
+                <div class="text-4xl font-orbitron text-neon-green mb-2">704% ROI</div>
+                <p class="text-gray-400">At minimum token valuation for 0.5 SOL early backers</p>
+                <div class="mt-4 font-orbitron text-xl text-neon-purple">Total Estimated Value: ~$683.82 per NFT</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-20 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="font-orbitron text-4xl md:text-5xl text-center mb-4 text-gradient">The Team</h2>
+            <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">Building the future of data sovereignty</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Team Member 1 -->
+                <div class="glass-effect rounded-xl p-6 text-center border border-neon-purple/30">
+                    <div class="w-20 h-20 bg-gradient-to-br from-neon-purple to-neon-pink rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-2xl">👨‍💻</span>
+                    </div>
+                    <h3 class="font-orbitron text-xl mb-2">Protocol Lead</h3>
+                    <p class="text-gray-400 text-sm mb-4">Former infrastructure architect</p>
+                    <div class="flex justify-center space-x-3">
+                        <div class="w-8 h-8 bg-dark-800 rounded-full flex items-center justify-center">
+                            <span class="text-xs">🐦</span>
+                        </div>
+                        <div class="w-8 h-8 bg-dark-800 rounded-full flex items-center justify-center">
+                            <span class="text-xs">in</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="glass-effect rounded-xl p-6 text-center border border-neon-purple/30">
+                    <div class="w-20 h-20 bg-gradient-to-br from-neon-blue to-neon-purple rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-2xl">👩‍💼</span>
+                    </div>
+                    <h3 class="font-orbitron text-xl mb-2">Product Architect</h3>
+                    <p class="text-gray-400 text-sm mb-4">Web3 product strategist</p>
+                    <div class="flex justify-center space-x-3">
+                        <div class="w-8 h-8 bg-dark-800 rounded-full flex items-center justify-center">
+                            <span class="text-xs">🐦</span>
+                        </div>
+                        <div class="w-8 h-8 bg-dark-800 rounded-full flex items-center justify-center">
+                            <span class="text-xs">in</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="glass-effect rounded-xl p-6 text-center border border-neon-purple/30">
+                    <div class="w-20 h-20 bg-gradient-to-br from-neon-green to-neon-blue rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-2xl">👨‍🔬</span>
+                    </div>
+                    <h3 class="font-orbitron text-xl mb-2">Research Lead</h3>
+                    <p class="text-gray-400 text-sm mb-4">Data sovereignty expert</p>
+                    <div class="flex justify-center space-x-3">
+                        <div class="w-8 h-8 bg-dark-800 rounded-full flex items-center justify-center">
+                            <span class="text-xs">🐦</span>
+                        </div>
+                        <div class="w-8 h-8 bg-dark-800 rounded-full flex items-center justify-center">
+                            <span class="text-xs">in</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 4 -->
+                <div class="glass-effect rounded-xl p-6 text-center border border-neon-purple/30">
+                    <div class="w-20 h-20 bg-gradient-to-br from-neon-pink to-neon-green rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-2xl">👩‍💻</span>
+                    </div>
+                    <h3 class="font-orbitron text-xl mb-2">DevOps Engineer</h3>
+                    <p class="text-gray-400 text-sm mb-4">Infrastructure specialist</p>
+                    <div class="flex justify-center space-x-3">
+                        <div class="w-8 h-8 bg-dark-800 rounded-full flex items-center justify-center">
+                            <span class="text-xs">🐦</span>
+                        </div>
+                        <div class="w-8 h-8 bg-dark-800 rounded-full flex items-center justify-center">
+                            <span class="text-xs">in</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Whitelist Section -->
+    <section id="whitelist" class="py-20 px-4">
+        <div class="container mx-auto max-w-4xl">
+            <div class="glass-effect rounded-2xl p-8 border border-neon-purple/30 neon-glow">
+                <h2 class="font-orbitron text-4xl text-center mb-8 text-gradient">Apply for Whitelist</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <!-- Pricing -->
+                    <div>
+                        <h3 class="font-orbitron text-2xl mb-6 text-neon-purple">Whitelist Benefits</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center p-4 rounded-lg bg-dark-800 border border-neon-green/30">
+                                <div>
+                                    <div class="font-orbitron text-neon-green">Early Backer Price</div>
+                                    <div class="text-sm text-gray-400">First 50 NFTs</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="font-orbitron text-xl">0.5 SOL</div>
+                                    <div class="text-sm text-neon-green">~$85</div>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-4 rounded-lg bg-dark-800 border border-neon-purple/30">
+                                <div>
+                                    <div class="font-orbitron">Public Mint Price</div>
+                                    <div class="text-sm text-gray-400">Remaining 151 NFTs</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="font-orbitron text-xl">0.75 SOL</div>
+                                    <div class="text-sm text-gray-400">~$127</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Requirements -->
+                    <div>
+                        <h3 class="font-orbitron text-2xl mb-6 text-neon-purple">Requirements</h3>
+                        <div class="space-y-4 text-gray-300">
+                            <p>✓ Active Web3 participant</p>
+                            <p>✓ Understanding of data sovereignty</p>
+                            <p>✓ Commitment to long-term governance</p>
+                            <p>✓ One application per person</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Whitelist Form CTA -->
+                <div class="text-center">
+                    <a href="https://forms.gle/your-whitelist-form-link" target="_blank" class="inline-block bg-gradient-to-r from-neon-purple to-neon-pink px-8 py-4 rounded-lg font-bold text-lg hover-lift transition-all duration-300 neon-glow mb-4">
+                        Apply for Whitelist Now
+                    </a>
+                    <p class="text-gray-400 text-sm">Selected applicants will be notified via email within 48 hours</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="py-20 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="font-orbitron text-4xl md:text-5xl text-center mb-4 text-gradient">Resources</h2>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <a href="#" class="glass-effect rounded-xl p-6 text-center border border-neon-purple/30 hover-lift transition-all duration-300">
+                    <div class="text-3xl mb-4">📄</div>
+                    <h3 class="font-orbitron text-xl mb-3">Synkpaper</h3>
+                    <p class="text-gray-400">Technical documentation</p>
+                </a>
+                
+                <a href="#" class="glass-effect rounded-xl p-6 text-center border border-neon-blue/30 hover-lift transition-all duration-300">
+                    <div class="text-3xl mb-4">❓</div>
+                    <h3 class="font-orbitron text-xl mb-3">FAQ</h3>
+                    <p class="text-gray-400">Common questions</p>
+                </a>
+                
+                <a href="#" class="glass-effect rounded-xl p-6 text-center border border-neon-green/30 hover-lift transition-all duration-300">
+                    <div class="text-3xl mb-4">📚</div>
+                    <h3 class="font-orbitron text-xl mb-3">Documentation</h3>
+                    <p class="text-gray-400">Developer resources</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="glass-effect border-t border-neon-purple/30 py-12 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-br from-neon-purple to-neon-pink rounded-lg"></div>
+                        <span class="font-orbitron text-lg font-bold text-gradient">WarpSynk</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">Building the future of data sovereignty</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-orbitron text-neon-purple mb-4">Protocol</h4>
+                    <div class="space-y-2">
+                        <a href="https://warpsynk.xyz/home" target="_blank" class="block text-gray-400 hover:text-white transition-colors">Live Platform</a>
+                        <a href="#" class="block text-gray-400 hover:text-white transition-colors">Documentation</a>
+                        <a href="#" class="block text-gray-400 hover:text-white transition-colors">Roadmap</a>
                     </div>
                 </div>
                 
                 <div>
-                    <div class="minting-box">
-                        <div class="minting-status">
-                            <div class="status-title">COMING SOON</div>
-                            <div class="status-subtitle">Minting begins after allowlist period</div>
-                        </div>
-                        
-                        <button class="mint-btn" id="mintButton" disabled>Mint Your Seat (Coming Soon)</button>
-                        
-                        <div class="price-info">
-                            <div class="price-item">Whitelist: <span class="price-highlight">50 NFTs at $400</span></div>
-                            <div class="price-item">Allowlist: <span class="price-highlight">100 NFTs at $500</span></div>
-                            <div class="price-item">Public: <span class="price-highlight">51 NFTs at $1,000</span></div>
-                        </div>
+                    <h4 class="font-orbitron text-neon-purple mb-4">Community</h4>
+                    <div class="space-y-2">
+                        <a href="#" class="block text-gray-400 hover:text-white transition-colors">Twitter</a>
+                        <a href="#" class="block text-gray-400 hover:text-white transition-colors">Discord</a>
+                        <a href="#" class="block text-gray-400 hover:text-white transition-colors">GitHub</a>
                     </div>
-                    
-                    <div class="refund-notice">60-day refund guarantee via smart contract</div>
+                </div>
+                
+                <div>
+                    <h4 class="font-orbitron text-neon-purple mb-4">Stewards</h4>
+                    <div class="space-y-2">
+                        <a href="#whitelist" class="block text-gray-400 hover:text-white transition-colors">Apply for Whitelist</a>
+                        <a href="#benefits" class="block text-gray-400 hover:text-white transition-colors">Benefits</a>
+                        <a href="#governance" class="block text-gray-400 hover:text-white transition-colors">Governance</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    
-    <!-- Wallet Connection Modal -->
-    <div class="modal" id="walletModal">
-        <div class="modal-content">
-            <h3 class="modal-title">Verify Your Interest</h3>
-            <p class="modal-text">
-                To ensure our stewards are committed builders, we require a wallet connection to join the exclusive allowlist.
-            </p>
             
-            <ul class="modal-list">
-                <li>Free, gasless signature to prove intent</li>
-                <li>First to know when mint goes live</li>
-                <li>Helps prevent bots and build genuine community</li>
-            </ul>
-            
-            <button class="modal-btn" id="modalConnect">Connect Wallet</button>
-            <button class="modal-close" id="closeModal">Maybe Later</button>
+            <div class="border-t border-neon-purple/30 mt-8 pt-8 text-center text-gray-400 text-sm">
+                <p>© 2024 WarpSynk Protocol. All rights reserved.</p>
+            </div>
         </div>
-    </div>
-    
+    </footer>
+
     <script>
-        // DOM Elements
-        const connectWalletBtn = document.getElementById('connectWallet');
-        const joinAllowlistBtn = document.getElementById('joinAllowlist');
-        const walletModal = document.getElementById('walletModal');
-        const modalConnectBtn = document.getElementById('modalConnect');
-        const closeModalBtn = document.getElementById('closeModal');
-        const mintButton = document.getElementById('mintButton');
-
-        // Mock wallet connection state
-        let walletConnected = false;
-
-        // Event Listeners
-        connectWalletBtn.addEventListener('click', () => {
-            walletModal.style.display = 'flex';
-        });
-
-        joinAllowlistBtn.addEventListener('click', () => {
-            walletModal.style.display = 'flex';
-        });
-
-        modalConnectBtn.addEventListener('click', () => {
-            // Simulate wallet connection
-            walletConnected = true;
-            connectWalletBtn.textContent = '0x7f3...c4b2';
-            connectWalletBtn.style.background = 'rgba(139, 92, 246, 0.2)';
-            joinAllowlistBtn.textContent = 'Allowlisted! We\'ll notify you.';
-            joinAllowlistBtn.style.background = 'rgb(22, 163, 74)';
-            joinAllowlistBtn.style.border = 'none';
-            joinAllowlistBtn.innerHTML = '✓ Allowlisted! We\'ll notify you.';
-            
-            walletModal.style.display = 'none';
-            
-            // Show success message
-            alert('Wallet connected successfully! You are now on the allowlist.');
-        });
-
-        closeModalBtn.addEventListener('click', () => {
-            walletModal.style.display = 'none';
-        });
-
-        // Close modal when clicking outside
-        walletModal.addEventListener('click', (e) => {
-            if (e.target === walletModal) {
-                walletModal.style.display = 'none';
-            }
-        });
-
-        // Countdown Timer Simulation
-        function updateCountdown() {
-            // Set target date (2 days from now)
-            const targetDate = new Date();
-            targetDate.setDate(targetDate.getDate() + 2);
-            targetDate.setHours(14, 37, 12, 0);
-            
-            const now = new Date().getTime();
-            const distance = targetDate - now;
-            
-            if (distance < 0) {
-                // Countdown finished
-                document.querySelector('.countdown-label').textContent = 'MINTING IS LIVE!';
-                return;
-            }
-            
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-            // Update display
-            document.querySelectorAll('.timer-value')[0].textContent = days.toString().padStart(2, '0');
-            document.querySelectorAll('.timer-value')[1].textContent = hours.toString().padStart(2, '0');
-            document.querySelectorAll('.timer-value')[2].textContent = minutes.toString().padStart(2, '0');
-            document.querySelectorAll('.timer-value')[3].textContent = seconds.toString().padStart(2, '0');
+        // Smooth scrolling
+        function scrollToWhitelist() {
+            document.getElementById('whitelist').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
         }
 
-        // Initialize
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-        
-        // Animate scarcity progress bar
-        setTimeout(() => {
-            document.querySelector('.scarcity-progress').style.width = '25%';
-        }, 1000);
+        // Update whitelist counter randomly for demo
+        function updateWhitelistCounter() {
+            const counter = document.getElementById('whitelistCounter');
+            const current = parseInt(counter.textContent.split('/')[0]);
+            if (current < 50 && Math.random() > 0.7) {
+                counter.textContent = `${current + 1}/50`;
+            }
+        }
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Observe all cards and sections
+        document.querySelectorAll('.glass-effect').forEach((el) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Update counter every 10 seconds
+        setInterval(updateWhitelistCounter, 10000);
     </script>
 </body>
 </html>

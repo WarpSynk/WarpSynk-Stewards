@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WarpSynk Steward - Founder Seats for Data Sovereignty</title>
+    <title>WarpSynk Steward Founder Seats for Data Sovereignty</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -86,6 +86,44 @@
                         0 0 40px rgba(139, 92, 246, 0.3),
                         0 0 60px rgba(139, 92, 246, 0.2);
         }
+
+        /* Preload critical animations */
+        @keyframes preloadAnimations {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Ensure smooth loading */
+        .fade-in {
+            animation: preloadAnimations 0.8s ease-out forwards;
+        }
+
+        /* Optimize for mobile */
+        @media (max-width: 768px) {
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .text-responsive {
+                font-size: clamp(2rem, 5vw, 3rem);
+            }
+            
+            .hero-text {
+                font-size: clamp(1.5rem, 4vw, 2rem);
+            }
+        }
+
+        /* Prevent layout shifts */
+        img, video, iframe {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Optimize scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
 <body class="gradient-bg text-white font-inter min-h-screen">
@@ -95,64 +133,64 @@
     <div class="fixed w-6 h-6 bg-neon-pink rounded-full top-1/3 right-1/4 opacity-20 animate-float"></div>
 
     <!-- Navigation -->
-    <nav class="glass-effect sticky top-0 z-50 border-b border-neon-purple/30">
+    <nav class="glass-effect sticky top-0 z-50 border-b border-neon-purple/30 fade-in">
         <div class="container mx-auto px-4 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-gradient-to-br from-neon-purple to-neon-pink rounded-lg neon-glow"></div>
-                    <span class="font-orbitron text-xl font-bold text-gradient">WarpSynk Stewards</span>
+                    <div class="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-br from-neon-purple to-neon-pink rounded-lg neon-glow"></div>
+                    <span class="font-orbitron text-lg md:text-xl font-bold text-gradient">WarpSynk Steward Founders</span>
                 </div>
                 
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#protocol" class="hover:text-neon-purple transition-colors">Protocol</a>
-                    <a href="#benefits" class="hover:text-neon-purple transition-colors">Benefits</a>
-                    <a href="#governance" class="hover:text-neon-purple transition-colors">Governance</a>
-                    <a href="#team" class="hover:text-neon-purple transition-colors">Team</a>
-                    <a href="#resources" class="hover:text-neon-purple transition-colors">Resources</a>
+                    <a href="#protocol" class="hover:text-neon-purple transition-colors duration-300">Protocol</a>
+                    <a href="#benefits" class="hover:text-neon-purple transition-colors duration-300">Benefits</a>
+                    <a href="#governance" class="hover:text-neon-purple transition-colors duration-300">Governance</a>
+                    <a href="#resources" class="hover:text-neon-purple transition-colors duration-300">Resources</a>
                 </div>
                 
-                <div class="flex items-center space-x-4">
-                    <a href="https://warpsynk.xyz/home" target="_blank" class="glass-effect px-4 py-2 rounded-lg font-semibold hover-lift border border-neon-purple/50 hover:border-neon-purple transition-all duration-300">
-                        See Live Protocol
+                <div class="flex items-center space-x-2 md:space-x-4">
+                    <a href="https://warpsynk.xyz/index" target="_blank" class="glass-effect px-3 py-2 md:px-4 md:py-2 rounded-lg font-semibold hover-lift border border-neon-purple/50 hover:border-neon-purple transition-all duration-300 text-sm md:text-base">
+                        See Main Protocol
                     </a>
-                    <button onclick="scrollToWhitelist()" class="bg-gradient-to-r from-neon-purple to-neon-pink px-6 py-2 rounded-lg font-semibold hover-lift transition-all duration-300 neon-glow">
-                        Apply for Whitelist
-                    </button>
+                    <a href="https://launchmynft.io/sol/21083" target="_blank" class="bg-gradient-to-r from-neon-purple to-neon-pink px-4 py-2 md:px-6 md:py-2 rounded-lg font-semibold hover-lift transition-all duration-300 neon-glow text-sm md:text-base">
+                        Mint Now
+                    </a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative py-20 px-4">
+    <section class="relative py-16 md:py-20 px-4 fade-in">
         <div class="container mx-auto max-w-6xl text-center">
-            <div class="inline-block glass-effect px-6 py-2 rounded-full mb-8 border border-neon-purple/50">
-                <span class="text-neon-purple font-semibold">201 Lifetime NFTs • Only 50 Whitelist Spots</span>
+            <div class="inline-block glass-effect px-4 py-2 md:px-6 md:py-2 rounded-full mb-6 md:mb-8 border border-neon-purple/50">
+                <span class="text-neon-purple font-semibold text-sm md:text-base">201 Lifetime NFTs • Mint Live Now For 0.75 SOL</span>
             </div>
             
-            <h1 class="font-orbitron text-5xl md:text-7xl font-bold mb-6 text-gradient">
+            <h1 class="font-orbitron text-4xl md:text-5xl lg:text-7xl font-bold mb-6 text-gradient text-responsive">
                 Founder Seats for Data Sovereignty
             </h1>
             
-            <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-                Join the 201 Founding Stewards shaping the future of decentralized data economy
+            <p class="text-lg md:text-xl lg:text-2xl text-gray-300 mb-6 md:mb-8 max-w-3xl mx-auto hero-text">
+                Join the 201 Founding Stewards shaping the future of decentralized data economy at WarpSynk Protocol for as low as 0.75 SOL per NFT
             </p>
 
-            <!-- Whitelist Counter -->
-            <div class="glass-effect rounded-2xl p-6 max-w-md mx-auto mb-8 border border-neon-purple/30">
-                <div class="font-orbitron text-neon-green text-2xl mb-2" id="whitelistCounter">27/50</div>
-                <div class="text-gray-400">Whitelist Applications Received</div>
-                <div class="w-full bg-gray-700 rounded-full h-2 mt-4">
-                    <div class="bg-gradient-to-r from-neon-purple to-neon-pink h-2 rounded-full" style="width: 54%"></div>
+            <!-- Mint Counter -->
+            <div class="glass-effect rounded-2xl p-4 md:p-6 max-w-md mx-auto mb-6 md:mb-8 border border-neon-purple/30">
+                <div class="font-orbitron text-neon-green text-xl md:text-2xl mb-2" id="mintCounter">148/201</div>
+                <div class="text-gray-400 text-sm md:text-base">NFTs To Be Minted Soon</div>
+                <div class="w-full bg-gray-700 rounded-full h-2 mt-3 md:mt-4">
+                    <div class="bg-gradient-to-r from-neon-purple to-neon-pink h-2 rounded-full" style="width: 73.6%"></div>
                 </div>
+                <div class="text-xs md:text-sm text-gray-500 mt-2">73.6% Soon To Be Sold Out</div>
             </div>
 
             <!-- CTA Buttons -->
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-                <button onclick="scrollToWhitelist()" class="bg-gradient-to-r from-neon-purple to-neon-pink px-8 py-4 rounded-lg font-bold text-lg hover-lift transition-all duration-300 neon-glow">
-                    Apply for Whitelist - 0.5 SOL
-                </button>
-                <a href="https://warpsynk.xyz/home" target="_blank" class="glass-effect border border-neon-purple/50 px-8 py-4 rounded-lg font-bold text-lg hover-lift transition-all duration-300">
+            <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center mb-8 md:mb-12">
+                <a href="https://launchmynft.io/sol/21083" target="_blank" class="bg-gradient-to-r from-neon-purple to-neon-pink px-6 py-3 md:px-8 md:py-4 rounded-lg font-bold text-base md:text-lg hover-lift transition-all duration-300 neon-glow w-full sm:w-auto text-center">
+                    Mint Your Founder Seat
+                </a>
+                <a href="https://warpsynk.xyz/home" target="_blank" class="glass-effect border border-neon-purple/50 px-6 py-3 md:px-8 md:py-4 rounded-lg font-bold text-base md:text-lg hover-lift transition-all duration-300 w-full sm:w-auto text-center">
                     🚀 See Live Protocol
                 </a>
             </div>
@@ -160,70 +198,70 @@
     </section>
 
     <!-- Trust Section -->
-    <section class="py-16 px-4">
+    <section class="py-12 md:py-16 px-4 fade-in">
         <div class="container mx-auto max-w-6xl">
-            <div class="grid md:grid-cols-3 gap-8 text-center">
-                <div class="glass-effect rounded-xl p-6 border border-neon-purple/30">
-                    <div class="text-3xl mb-4">⚡</div>
-                    <h3 class="font-orbitron text-xl mb-3">Built on Solana</h3>
-                    <p class="text-gray-400">Leveraging high-speed, low-cost blockchain infrastructure</p>
+            <div class="grid md:grid-cols-3 gap-6 md:gap-8 text-center">
+                <div class="glass-effect rounded-xl p-4 md:p-6 border border-neon-purple/30">
+                    <div class="text-2xl md:text-3xl mb-3 md:mb-4">⚡</div>
+                    <h3 class="font-orbitron text-lg md:text-xl mb-2 md:mb-3">Built on Solana</h3>
+                    <p class="text-gray-400 text-sm md:text-base">Leveraging high-speed, low-cost blockchain infrastructure</p>
                 </div>
-                <div class="glass-effect rounded-xl p-6 border border-neon-blue/30">
-                    <div class="text-3xl mb-4">🛡️</div>
-                    <h3 class="font-orbitron text-xl mb-3">Web3 Native</h3>
-                    <p class="text-gray-400">Designed by builders for the decentralized future</p>
+                <div class="glass-effect rounded-xl p-4 md:p-6 border border-neon-blue/30">
+                    <div class="text-2xl md:text-3xl mb-3 md:mb-4">🛡️</div>
+                    <h3 class="font-orbitron text-lg md:text-xl mb-2 md:mb-3">Web3 Native</h3>
+                    <p class="text-gray-400 text-sm md:text-base">Designed by builders for the decentralized future</p>
                 </div>
-                <div class="glass-effect rounded-xl p-6 border border-neon-green/30">
-                    <div class="text-3xl mb-4">🌐</div>
-                    <h3 class="font-orbitron text-xl mb-3">Community Led</h3>
-                    <p class="text-gray-400">500+ builders already in our ecosystem</p>
+                <div class="glass-effect rounded-xl p-4 md:p-6 border border-neon-green/30">
+                    <div class="text-2xl md:text-3xl mb-3 md:mb-4">🌐</div>
+                    <h3 class="font-orbitron text-lg md:text-xl mb-2 md:mb-3">Community Led</h3>
+                    <p class="text-gray-400 text-sm md:text-base">500+ builders already in our ecosystem</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Protocol Section -->
-    <section id="protocol" class="py-20 px-4">
+    <section id="protocol" class="py-16 md:py-20 px-4 fade-in">
         <div class="container mx-auto max-w-6xl">
-            <h2 class="font-orbitron text-4xl md:text-5xl text-center mb-4 text-gradient">What You're Governing</h2>
-            <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">WarpSynk is a live protocol building the infrastructure for data sovereignty</p>
+            <h2 class="font-orbitron text-3xl md:text-4xl lg:text-5xl text-center mb-4 text-gradient">What You're Governing</h2>
+            <p class="text-gray-400 text-center mb-8 md:mb-12 max-w-2xl mx-auto text-sm md:text-base">WarpSynk is a live protocol building the infrastructure for data sovereignty</p>
             
-            <div class="glass-effect rounded-2xl p-8 border border-neon-purple/30">
-                <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div class="glass-effect rounded-2xl p-6 md:p-8 border border-neon-purple/30">
+                <div class="grid md:grid-cols-2 gap-6 md:gap-8 items-center">
                     <div>
-                        <h3 class="font-orbitron text-2xl mb-4 text-neon-purple">Live Protocol, Real Impact</h3>
-                        <p class="text-gray-300 mb-6">Stewards govern an active protocol with real users and ongoing development. This isn't theoretical - it's happening now.</p>
+                        <h3 class="font-orbitron text-xl md:text-2xl mb-3 md:mb-4 text-neon-purple">Live Protocol, Real Impact</h3>
+                        <p class="text-gray-300 mb-4 md:mb-6 text-sm md:text-base">Stewards govern an active protocol with real users and ongoing development. This isn't theoretical - it's happening now.</p>
                         
-                        <div class="space-y-4">
+                        <div class="space-y-3 md:space-y-4">
                             <div class="flex items-center space-x-3">
-                                <div class="w-6 h-6 bg-neon-green rounded-full flex items-center justify-center">
+                                <div class="w-5 h-5 md:w-6 md:h-6 bg-neon-green rounded-full flex items-center justify-center">
                                     <span class="text-xs">✓</span>
                                 </div>
-                                <span>Active protocol with real users</span>
+                                <span class="text-sm md:text-base">Active protocol with real users</span>
                             </div>
                             <div class="flex items-center space-x-3">
-                                <div class="w-6 h-6 bg-neon-green rounded-full flex items-center justify-center">
+                                <div class="w-5 h-5 md:w-6 md:h-6 bg-neon-green rounded-full flex items-center justify-center">
                                     <span class="text-xs">✓</span>
                                 </div>
-                                <span>Ongoing development and updates</span>
+                                <span class="text-sm md:text-base">Ongoing development and updates</span>
                             </div>
                             <div class="flex items-center space-x-3">
-                                <div class="w-6 h-6 bg-neon-green rounded-full flex items-center justify-center">
+                                <div class="w-5 h-5 md:w-6 md:h-6 bg-neon-green rounded-full flex items-center justify-center">
                                     <span class="text-xs">✓</span>
                                 </div>
-                                <span>Clear roadmap and vision</span>
+                                <span class="text-sm md:text-base">Clear roadmap and vision</span>
                             </div>
                         </div>
                         
-                        <a href="https://warpsynk.xyz/home" target="_blank" class="inline-block mt-6 glass-effect border border-neon-purple/50 px-6 py-3 rounded-lg font-semibold hover-lift transition-all duration-300">
+                        <a href="https://warpsynk.xyz/index" target="_blank" class="inline-block mt-4 md:mt-6 glass-effect border border-neon-purple/50 px-4 py-2 md:px-6 md:py-3 rounded-lg font-semibold hover-lift transition-all duration-300 text-sm md:text-base">
                             Explore WarpSynk Protocol →
                         </a>
                     </div>
                     
-                    <div class="bg-dark-800 rounded-xl p-8 border border-neon-purple/50 text-center">
-                        <div class="text-6xl mb-4">🚀</div>
-                        <div class="font-orbitron text-neon-purple text-xl">Live Platform</div>
-                        <div class="text-gray-400 mt-2">Active Development</div>
+                    <div class="bg-dark-800 rounded-xl p-6 md:p-8 border border-neon-purple/50 text-center mt-6 md:mt-0">
+                        <div class="text-4xl md:text-6xl mb-3 md:mb-4">🚀</div>
+                        <div class="font-orbitron text-neon-purple text-lg md:text-xl">Live Platform</div>
+                        <div class="text-gray-400 mt-1 md:mt-2 text-sm md:text-base">Active Development</div>
                     </div>
                 </div>
             </div>
@@ -231,106 +269,106 @@
     </section>
 
     <!-- Benefits Section -->
-    <section id="benefits" class="py-20 px-4">
+    <section id="benefits" class="py-16 md:py-20 px-4 fade-in">
         <div class="container mx-auto max-w-6xl">
-            <h2 class="font-orbitron text-4xl md:text-5xl text-center mb-4 text-gradient">Steward Benefits</h2>
+            <h2 class="font-orbitron text-3xl md:text-4xl lg:text-5xl text-center mb-4 text-gradient">Steward Benefits</h2>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-12">
                 <!-- Benefit 1 -->
-                <div class="glass-effect rounded-xl p-6 hover-lift border border-neon-purple/30 transition-all duration-300">
-                    <div class="w-12 h-12 bg-gradient-to-br from-neon-purple to-neon-pink rounded-lg flex items-center justify-center mb-4">
-                        <span class="text-xl">⚡</span>
+                <div class="glass-effect rounded-xl p-4 md:p-6 hover-lift border border-neon-purple/30 transition-all duration-300">
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-neon-purple to-neon-pink rounded-lg flex items-center justify-center mb-3 md:mb-4">
+                        <span class="text-lg md:text-xl">⚡</span>
                     </div>
-                    <h3 class="font-orbitron text-xl mb-3">Free Validator Node</h3>
-                    <p class="text-gray-400">Pre-configured SynkNode with 20-40% sync fees + $WSYNK rewards</p>
+                    <h3 class="font-orbitron text-lg md:text-xl mb-2 md:mb-3">Free Validator Node</h3>
+                    <p class="text-gray-400 text-sm md:text-base">Pre-configured SynkNode with 20-40% sync fees + $WSYNK rewards</p>
                 </div>
 
                 <!-- Benefit 2 -->
-                <div class="glass-effect rounded-xl p-6 hover-lift border border-neon-purple/30 transition-all duration-300">
-                    <div class="w-12 h-12 bg-gradient-to-br from-neon-purple to-neon-blue rounded-lg flex items-center justify-center mb-4">
-                        <span class="text-xl">💎</span>
+                <div class="glass-effect rounded-xl p-4 md:p-6 hover-lift border border-neon-purple/30 transition-all duration-300">
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-neon-purple to-neon-blue rounded-lg flex items-center justify-center mb-3 md:mb-4">
+                        <span class="text-lg md:text-xl">💎</span>
                     </div>
-                    <h3 class="font-orbitron text-xl mb-3">Token Allocation</h3>
-                    <p class="text-gray-400">36,764 $WSYNK per NFT at minimum $0.005 launch price</p>
+                    <h3 class="font-orbitron text-lg md:text-xl mb-2 md:mb-3">Token Allocation</h3>
+                    <p class="text-gray-400 text-sm md:text-base">36,764 $WSYNK per NFT at minimum $0.05 launch price</p>
                 </div>
 
                 <!-- Benefit 3 -->
-                <div class="glass-effect rounded-xl p-6 hover-lift border border-neon-purple/30 transition-all duration-300">
-                    <div class="w-12 h-12 bg-gradient-to-br from-neon-pink to-neon-purple rounded-lg flex items-center justify-center mb-4">
-                        <span class="text-xl">🏛️</span>
+                <div class="glass-effect rounded-xl p-4 md:p-6 hover-lift border border-neon-purple/30 transition-all duration-300">
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-neon-pink to-neon-purple rounded-lg flex items-center justify-center mb-3 md:mb-4">
+                        <span class="text-lg md:text-xl">🏛️</span>
                     </div>
-                    <h3 class="font-orbitron text-xl mb-3">Lifetime Governance</h3>
-                    <p class="text-gray-400">Direct influence on protocol decisions indefinitely</p>
+                    <h3 class="font-orbitron text-lg md:text-xl mb-2 md:mb-3">Lifetime Governance</h3>
+                    <p class="text-gray-400 text-sm md:text-base">Direct influence on protocol decisions indefinitely</p>
                 </div>
 
                 <!-- Benefit 4 -->
-                <div class="glass-effect rounded-xl p-6 hover-lift border border-neon-purple/30 transition-all duration-300">
-                    <div class="w-12 h-12 bg-gradient-to-br from-neon-blue to-neon-green rounded-lg flex items-center justify-center mb-4">
-                        <span class="text-xl">🔮</span>
+                <div class="glass-effect rounded-xl p-4 md:p-6 hover-lift border border-neon-purple/30 transition-all duration-300">
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-neon-blue to-neon-green rounded-lg flex items-center justify-center mb-3 md:mb-4">
+                        <span class="text-lg md:text-xl">🔮</span>
                     </div>
-                    <h3 class="font-orbitron text-xl mb-3">Early Access</h3>
-                    <p class="text-gray-400">Test DataFi products before public release</p>
+                    <h3 class="font-orbitron text-lg md:text-xl mb-2 md:mb-3">Early Access</h3>
+                    <p class="text-gray-400 text-sm md:text-base">Test DataFi products before public release</p>
                 </div>
 
                 <!-- Benefit 5 -->
-                <div class="glass-effect rounded-xl p-6 hover-lift border border-neon-purple/30 transition-all duration-300">
-                    <div class="w-12 h-12 bg-gradient-to-br from-neon-green to-neon-blue rounded-lg flex items-center justify-center mb-4">
-                        <span class="text-xl">🎖️</span>
+                <div class="glass-effect rounded-xl p-4 md:p-6 hover-lift border border-neon-purple/30 transition-all duration-300">
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-neon-green to-neon-blue rounded-lg flex items-center justify-center mb-3 md:mb-4">
+                        <span class="text-lg md:text-xl">🎖️</span>
                     </div>
-                    <h3 class="font-orbitron text-xl mb-3">Genesis Legacy</h3>
-                    <p class="text-gray-400">Name forever in Genesis Ledger as Founding Steward</p>
+                    <h3 class="font-orbitron text-lg md:text-xl mb-2 md:mb-3">Genesis Legacy</h3>
+                    <p class="text-gray-400 text-sm md:text-base">Name forever in Genesis Ledger as Founding Steward</p>
                 </div>
 
                 <!-- Benefit 6 -->
-                <div class="glass-effect rounded-xl p-6 hover-lift border border-neon-purple/30 transition-all duration-300">
-                    <div class="w-12 h-12 bg-gradient-to-br from-neon-purple to-neon-green rounded-lg flex items-center justify-center mb-4">
-                        <span class="text-xl">🛡️</span>
+                <div class="glass-effect rounded-xl p-4 md:p-6 hover-lift border border-neon-purple/30 transition-all duration-300">
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-neon-purple to-neon-green rounded-lg flex items-center justify-center mb-3 md:mb-4">
+                        <span class="text-lg md:text-xl">🛡️</span>
                     </div>
-                    <h3 class="font-orbitron text-xl mb-3">Refund Protection</h3>
-                    <p class="text-gray-400">60-day full refund guarantee</p>
+                    <h3 class="font-orbitron text-lg md:text-xl mb-2 md:mb-3">Refund Protection</h3>
+                    <p class="text-gray-400 text-sm md:text-base">60-day full refund guarantee</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Governance Section -->
-    <section id="governance" class="py-20 px-4">
+    <section id="governance" class="py-16 md:py-20 px-4 fade-in">
         <div class="container mx-auto max-w-6xl">
-            <div class="glass-effect rounded-2xl p-8 border border-neon-purple/30 neon-glow">
-                <h2 class="font-orbitron text-4xl text-center mb-8 text-gradient">Democratic Governance</h2>
+            <div class="glass-effect rounded-2xl p-6 md:p-8 border border-neon-purple/30 neon-glow">
+                <h2 class="font-orbitron text-3xl md:text-4xl text-center mb-6 md:mb-8 text-gradient">Democratic Governance</h2>
                 
-                <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="grid md:grid-cols-2 gap-6 md:gap-8 items-center">
                     <div>
-                        <h3 class="font-orbitron text-2xl mb-4 text-neon-purple">One Wallet = One Vote</h3>
-                        <p class="text-gray-300 mb-6">True democratic governance with no whale domination. Each steward has equal voting power in protocol decisions.</p>
+                        <h3 class="font-orbitron text-xl md:text-2xl mb-3 md:mb-4 text-neon-purple">One Wallet = One Vote</h3>
+                        <p class="text-gray-300 mb-4 md:mb-6 text-sm md:text-base">True democratic governance with no whale domination. Each steward has equal voting power in protocol decisions.</p>
                         
-                        <div class="space-y-4">
+                        <div class="space-y-3 md:space-y-4">
                             <div class="flex items-center space-x-3">
-                                <div class="w-6 h-6 bg-neon-green rounded-full flex items-center justify-center">
+                                <div class="w-5 h-5 md:w-6 md:h-6 bg-neon-green rounded-full flex items-center justify-center">
                                     <span class="text-xs">✓</span>
                                 </div>
-                                <span>101/201 votes required to pass decisions</span>
+                                <span class="text-sm md:text-base">101/201 votes required to pass decisions</span>
                             </div>
                             <div class="flex items-center space-x-3">
-                                <div class="w-6 h-6 bg-neon-green rounded-full flex items-center justify-center">
+                                <div class="w-5 h-5 md:w-6 md:h-6 bg-neon-green rounded-full flex items-center justify-center">
                                     <span class="text-xs">✓</span>
                                 </div>
-                                <span>Prevents tied votes and deadlocks</span>
+                                <span class="text-sm md:text-base">Prevents tied votes and deadlocks</span>
                             </div>
                             <div class="flex items-center space-x-3">
-                                <div class="w-6 h-6 bg-neon-green rounded-full flex items-center justify-center">
+                                <div class="w-5 h-5 md:w-6 md:h-6 bg-neon-green rounded-full flex items-center justify-center">
                                     <span class="text-xs">✓</span>
                                 </div>
-                                <span>Requires broad consensus (50%+ of stewards)</span>
+                                <span class="text-sm md:text-base">Requires broad consensus (50%+ of stewards)</span>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="text-center">
-                        <div class="inline-block bg-dark-800 rounded-2xl p-8 border border-neon-purple/50">
-                            <div class="font-orbitron text-6xl text-neon-purple mb-4">201</div>
-                            <div class="text-gray-400">Founding Stewards</div>
-                            <div class="mt-4 font-orbitron text-neon-green">50.2% Majority Required</div>
+                    <div class="text-center mt-6 md:mt-0">
+                        <div class="inline-block bg-dark-800 rounded-2xl p-6 md:p-8 border border-neon-purple/50">
+                            <div class="font-orbitron text-4xl md:text-6xl text-neon-purple mb-3 md:mb-4">201</div>
+                            <div class="text-gray-400 text-sm md:text-base">Founding Stewards</div>
+                            <div class="mt-3 md:mt-4 font-orbitron text-neon-green text-sm md:text-base">50.2% Majority Required</div>
                         </div>
                     </div>
                 </div>
@@ -339,171 +377,93 @@
     </section>
 
     <!-- Value Section -->
-    <section class="py-20 px-4">
+    <section class="py-16 md:py-20 px-4 fade-in">
         <div class="container mx-auto max-w-6xl">
-            <h2 class="font-orbitron text-4xl md:text-5xl text-center mb-4 text-gradient">Value Proposition</h2>
+            <h2 class="font-orbitron text-3xl md:text-4xl lg:text-5xl text-center mb-4 text-gradient">Value Proposition</h2>
             
-            <div class="grid md:grid-cols-2 gap-8 mb-12">
+            <div class="grid md:grid-cols-2 gap-6 md:gap-8 mb-8 md:mb-12">
                 <!-- Tangible Value -->
-                <div class="glass-effect rounded-2xl p-8 border border-neon-green/30">
-                    <h3 class="font-orbitron text-2xl mb-6 text-neon-green">Tangible Value</h3>
-                    <div class="space-y-4">
-                        <div class="flex justify-between items-center py-3 border-b border-gray-700">
-                            <span>Validator Node</span>
-                            <span class="font-orbitron text-neon-green">$75</span>
+                <div class="glass-effect rounded-2xl p-6 md:p-8 border border-neon-green/30">
+                    <h3 class="font-orbitron text-xl md:text-2xl mb-4 md:mb-6 text-neon-green">Tangible Value</h3>
+                    <div class="space-y-3 md:space-y-4">
+                        <div class="flex justify-between items-center py-2 md:py-3 border-b border-gray-700">
+                            <span class="text-sm md:text-base">Validator Node</span>
+                            <span class="font-orbitron text-neon-green text-sm md:text-base">$100</span>
                         </div>
-                        <div class="flex justify-between items-center py-3 border-b border-gray-700">
-                            <span>$WSYNK Allocation</span>
-                            <span class="font-orbitron text-neon-green">$183.82</span>
+                        <div class="flex justify-between items-center py-2 md:py-3 border-b border-gray-700">
+                            <span class="text-sm md:text-base">$WSYNK Allocation</span>
+                            <span class="font-orbitron text-neon-green text-sm md:text-base">$183.82</span>
                         </div>
-                        <div class="flex justify-between items-center py-3 text-xl font-bold">
-                            <span>Total Tangible</span>
-                            <span class="font-orbitron text-neon-green">$258.82</span>
+                        <div class="flex justify-between items-center py-2 md:py-3 text-lg md:text-xl font-bold">
+                            <span class="text-sm md:text-base">Total Tangible</span>
+                            <span class="font-orbitron text-neon-green">$283.82</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Intangible Value -->
-                <div class="glass-effect rounded-2xl p-8 border border-neon-blue/30">
-                    <h3 class="font-orbitron text-2xl mb-6 text-neon-blue">Intangible Value</h3>
-                    <div class="space-y-4">
-                        <div class="flex justify-between items-center py-3 border-b border-gray-700">
-                            <span>Lifetime Founder Seat</span>
-                            <span class="font-orbitron text-neon-blue">Priceless</span>
+                <div class="glass-effect rounded-2xl p-6 md:p-8 border border-neon-blue/30">
+                    <h3 class="font-orbitron text-xl md:text-2xl mb-4 md:mb-6 text-neon-blue">Intangible Value</h3>
+                    <div class="space-y-3 md:space-y-4">
+                        <div class="flex justify-between items-center py-2 md:py-3 border-b border-gray-700">
+                            <span class="text-sm md:text-base">Lifetime Founder Seat</span>
+                            <span class="font-orbitron text-neon-blue text-sm md:text-base">Priceless</span>
                         </div>
-                        <div class="flex justify-between items-center py-3 border-b border-gray-700">
-                            <span>Early Access</span>
-                            <span class="font-orbitron text-neon-blue">$75</span>
+                        <div class="flex justify-between items-center py-2 md:py-3 border-b border-gray-700">
+                            <span class="text-sm md:text-base">Early Access</span>
+                            <span class="font-orbitron text-neon-blue text-sm md:text-base">$100</span>
                         </div>
-                        <div class="flex justify-between items-center py-3 border-b border-gray-700">
-                            <span>Steward Prestige</span>
-                            <span class="font-orbitron text-neon-blue">$150</span>
+                        <div class="flex justify-between items-center py-2 md:py-3 border-b border-gray-700">
+                            <span class="text-sm md:text-base">Steward Prestige</span>
+                            <span class="font-orbitron text-neon-blue text-sm md:text-base">$100</span>
                         </div>
-                        <div class="flex justify-between items-center py-3 text-xl font-bold">
-                            <span>Total Intangible</span>
-                            <span class="font-orbitron text-neon-blue">~$425</span>
+                        <div class="flex justify-between items-center py-2 md:py-3 text-lg md:text-xl font-bold">
+                            <span class="text-sm md:text-base">Total Intangible</span>
+                            <span class="font-orbitron text-neon-blue">~$200</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- ROI Highlight -->
-            <div class="glass-effect rounded-2xl p-8 text-center border border-neon-purple/30 neon-glow">
-                <h3 class="font-orbitron text-2xl mb-4 text-gradient">Early Backer Advantage</h3>
-                <div class="text-4xl font-orbitron text-neon-green mb-2">704% ROI</div>
-                <p class="text-gray-400">At minimum token valuation for 0.5 SOL early backers</p>
-                <div class="mt-4 font-orbitron text-xl text-neon-purple">Total Estimated Value: ~$683.82 per NFT</div>
+            <div class="glass-effect rounded-2xl p-6 md:p-8 text-center border border-neon-purple/30 neon-glow">
+                <h3 class="font-orbitron text-xl md:text-2xl mb-3 md:mb-4 text-gradient">Founder Advantage</h3>
+                <div class="text-3xl md:text-4xl font-orbitron text-neon-green mb-2">700% ROI</div>
+                <p class="text-gray-400 text-sm md:text-base">At minimum token valuation for early backers</p>
+                <div class="mt-3 md:mt-4 font-orbitron text-lg md:text-xl text-neon-purple">Total Estimated Value: ~$483.82 per NFT</div>
             </div>
         </div>
     </section>
 
-    <!-- Team Section -->
-    <section id="team" class="py-20 px-4">
-        <div class="container mx-auto max-w-6xl">
-            <h2 class="font-orbitron text-4xl md:text-5xl text-center mb-4 text-gradient">The Team</h2>
-            <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">Building the future of data sovereignty</p>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Team Member 1 -->
-                <div class="glass-effect rounded-xl p-6 text-center border border-neon-purple/30">
-                    <div class="w-20 h-20 bg-gradient-to-br from-neon-purple to-neon-pink rounded-full mx-auto mb-4 flex items-center justify-center">
-                        <span class="text-2xl">👨‍💻</span>
-                    </div>
-                    <h3 class="font-orbitron text-xl mb-2">Protocol Lead</h3>
-                    <p class="text-gray-400 text-sm mb-4">Former infrastructure architect</p>
-                    <div class="flex justify-center space-x-3">
-                        <div class="w-8 h-8 bg-dark-800 rounded-full flex items-center justify-center">
-                            <span class="text-xs">🐦</span>
-                        </div>
-                        <div class="w-8 h-8 bg-dark-800 rounded-full flex items-center justify-center">
-                            <span class="text-xs">in</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Team Member 2 -->
-                <div class="glass-effect rounded-xl p-6 text-center border border-neon-purple/30">
-                    <div class="w-20 h-20 bg-gradient-to-br from-neon-blue to-neon-purple rounded-full mx-auto mb-4 flex items-center justify-center">
-                        <span class="text-2xl">👩‍💼</span>
-                    </div>
-                    <h3 class="font-orbitron text-xl mb-2">Product Architect</h3>
-                    <p class="text-gray-400 text-sm mb-4">Web3 product strategist</p>
-                    <div class="flex justify-center space-x-3">
-                        <div class="w-8 h-8 bg-dark-800 rounded-full flex items-center justify-center">
-                            <span class="text-xs">🐦</span>
-                        </div>
-                        <div class="w-8 h-8 bg-dark-800 rounded-full flex items-center justify-center">
-                            <span class="text-xs">in</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Team Member 3 -->
-                <div class="glass-effect rounded-xl p-6 text-center border border-neon-purple/30">
-                    <div class="w-20 h-20 bg-gradient-to-br from-neon-green to-neon-blue rounded-full mx-auto mb-4 flex items-center justify-center">
-                        <span class="text-2xl">👨‍🔬</span>
-                    </div>
-                    <h3 class="font-orbitron text-xl mb-2">Research Lead</h3>
-                    <p class="text-gray-400 text-sm mb-4">Data sovereignty expert</p>
-                    <div class="flex justify-center space-x-3">
-                        <div class="w-8 h-8 bg-dark-800 rounded-full flex items-center justify-center">
-                            <span class="text-xs">🐦</span>
-                        </div>
-                        <div class="w-8 h-8 bg-dark-800 rounded-full flex items-center justify-center">
-                            <span class="text-xs">in</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Team Member 4 -->
-                <div class="glass-effect rounded-xl p-6 text-center border border-neon-purple/30">
-                    <div class="w-20 h-20 bg-gradient-to-br from-neon-pink to-neon-green rounded-full mx-auto mb-4 flex items-center justify-center">
-                        <span class="text-2xl">👩‍💻</span>
-                    </div>
-                    <h3 class="font-orbitron text-xl mb-2">DevOps Engineer</h3>
-                    <p class="text-gray-400 text-sm mb-4">Infrastructure specialist</p>
-                    <div class="flex justify-center space-x-3">
-                        <div class="w-8 h-8 bg-dark-800 rounded-full flex items-center justify-center">
-                            <span class="text-xs">🐦</span>
-                        </div>
-                        <div class="w-8 h-8 bg-dark-800 rounded-full flex items-center justify-center">
-                            <span class="text-xs">in</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Whitelist Section -->
-    <section id="whitelist" class="py-20 px-4">
+    <!-- Mint Section -->
+    <section id="mint" class="py-16 md:py-20 px-4 fade-in">
         <div class="container mx-auto max-w-4xl">
-            <div class="glass-effect rounded-2xl p-8 border border-neon-purple/30 neon-glow">
-                <h2 class="font-orbitron text-4xl text-center mb-8 text-gradient">Apply for Whitelist</h2>
+            <div class="glass-effect rounded-2xl p-6 md:p-8 border border-neon-purple/30 neon-glow">
+                <h2 class="font-orbitron text-3xl md:text-4xl text-center mb-6 md:mb-8 text-gradient">Mint Your Founder Seat</h2>
                 
-                <div class="grid md:grid-cols-2 gap-8 mb-8">
-                    <!-- Pricing -->
+                <div class="grid md:grid-cols-2 gap-6 md:gap-8 mb-6 md:mb-8">
+                    <!-- Mint Info -->
                     <div>
-                        <h3 class="font-orbitron text-2xl mb-6 text-neon-purple">Whitelist Benefits</h3>
-                        <div class="space-y-4">
-                            <div class="flex justify-between items-center p-4 rounded-lg bg-dark-800 border border-neon-green/30">
+                        <h3 class="font-orbitron text-xl md:text-2xl mb-4 md:mb-6 text-neon-purple">Founder Benefits</h3>
+                        <div class="space-y-3 md:space-y-4">
+                            <div class="flex justify-between items-center p-3 md:p-4 rounded-lg bg-dark-800 border border-neon-green/30">
                                 <div>
-                                    <div class="font-orbitron text-neon-green">Early Backer Price</div>
-                                    <div class="text-sm text-gray-400">First 50 NFTs</div>
+                                    <div class="font-orbitron text-neon-green text-sm md:text-base">Limited Supply</div>
+                                    <div class="text-xs md:text-sm text-gray-400">Only 201 Founder Seats will ever exist</div>
                                 </div>
                                 <div class="text-right">
-                                    <div class="font-orbitron text-xl">0.5 SOL</div>
-                                    <div class="text-sm text-neon-green">~$85</div>
+                                    <div class="font-orbitron text-lg md:text-xl">201 NFTs</div>
+                                    <div class="text-xs md:text-sm text-neon-green">Lifetime Access</div>
                                 </div>
                             </div>
-                            <div class="flex justify-between items-center p-4 rounded-lg bg-dark-800 border border-neon-purple/30">
+                            <div class="flex justify-between items-center p-3 md:p-4 rounded-lg bg-dark-800 border border-neon-purple/30">
                                 <div>
-                                    <div class="font-orbitron">Public Mint Price</div>
-                                    <div class="text-sm text-gray-400">Remaining 151 NFTs</div>
+                                    <div class="font-orbitron text-sm md:text-base">$WSYNK Token Allocation</div>
+                                    <div class="text-xs md:text-sm text-gray-400">Per Founder Seat</div>
                                 </div>
                                 <div class="text-right">
-                                    <div class="font-orbitron text-xl">0.75 SOL</div>
-                                    <div class="text-sm text-gray-400">~$127</div>
+                                    <div class="font-orbitron text-lg md:text-xl">36,764 $WSYNK</div>
+                                    <div class="text-xs md:text-sm text-gray-400">Minimum $183.82 value</div>
                                 </div>
                             </div>
                         </div>
@@ -511,137 +471,144 @@
 
                     <!-- Requirements -->
                     <div>
-                        <h3 class="font-orbitron text-2xl mb-6 text-neon-purple">Requirements</h3>
-                        <div class="space-y-4 text-gray-300">
-                            <p>✓ Active Web3 participant</p>
-                            <p>✓ Understanding of data sovereignty</p>
-                            <p>✓ Commitment to long-term governance</p>
-                            <p>✓ One application per person</p>
+                        <h3 class="font-orbitron text-xl md:text-2xl mb-4 md:mb-6 text-neon-purple">What You Get</h3>
+                        <div class="space-y-3 text-gray-300 text-sm md:text-base">
+                            <p>✓ Free Validator Node ($100 value)</p>
+                            <p>✓ $WSYNK Token Allocation</p>
+                            <p>✓ Lifetime Governance Rights</p>
+                            <p>✓ Early Product Access</p>
+                            <p>✓ Genesis Legacy Status</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Whitelist Form CTA -->
+                <!-- Mint CTA -->
                 <div class="text-center">
-                    <a href="https://forms.gle/your-whitelist-form-link" target="_blank" class="inline-block bg-gradient-to-r from-neon-purple to-neon-pink px-8 py-4 rounded-lg font-bold text-lg hover-lift transition-all duration-300 neon-glow mb-4">
-                        Apply for Whitelist Now
+                    <a href="https://launchmynft.io/sol/21083" target="_blank" class="inline-block bg-gradient-to-r from-neon-purple to-neon-pink px-6 py-3 md:px-8 md:py-4 rounded-lg font-bold text-base md:text-lg hover-lift transition-all duration-300 neon-glow mb-3 md:mb-4 w-full md:w-auto">
+                        Mint Your Founder Seat Now
                     </a>
-                    <p class="text-gray-400 text-sm">Selected applicants will be notified via email within 48 hours</p>
+                    <p class="text-gray-400 text-xs md:text-sm">Limited to 201 lifetime NFTs. Once minted, never available again.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Resources Section -->
-    <section id="resources" class="py-20 px-4">
+    <section id="resources" class="py-16 md:py-20 px-4 fade-in">
         <div class="container mx-auto max-w-6xl">
-            <h2 class="font-orbitron text-4xl md:text-5xl text-center mb-4 text-gradient">Resources</h2>
+            <h2 class="font-orbitron text-3xl md:text-4xl lg:text-5xl text-center mb-4 text-gradient">Resources</h2>
             
-            <div class="grid md:grid-cols-3 gap-6">
-                <a href="#" class="glass-effect rounded-xl p-6 text-center border border-neon-purple/30 hover-lift transition-all duration-300">
-                    <div class="text-3xl mb-4">📄</div>
-                    <h3 class="font-orbitron text-xl mb-3">Synkpaper</h3>
-                    <p class="text-gray-400">Technical documentation</p>
+            <div class="grid md:grid-cols-3 gap-4 md:gap-6">
+                <a href="https://warpsynk.xyz/litepaper" class="glass-effect rounded-xl p-4 md:p-6 text-center border border-neon-purple/30 hover-lift transition-all duration-300">
+                    <div class="text-2xl md:text-3xl mb-3 md:mb-4">📄</div>
+                    <h3 class="font-orbitron text-lg md:text-xl mb-2 md:mb-3">Synkpaper</h3>
+                    <p class="text-gray-400 text-sm md:text-base">Technical documentation</p>
                 </a>
                 
-                <a href="#" class="glass-effect rounded-xl p-6 text-center border border-neon-blue/30 hover-lift transition-all duration-300">
-                    <div class="text-3xl mb-4">❓</div>
-                    <h3 class="font-orbitron text-xl mb-3">FAQ</h3>
-                    <p class="text-gray-400">Common questions</p>
+                <a href="https://warpsynk.xyz/about" class="glass-effect rounded-xl p-4 md:p-6 text-center border border-neon-blue/30 hover-lift transition-all duration-300">
+                    <div class="text-2xl md:text-3xl mb-3 md:mb-4">❓</div>
+                    <h3 class="font-orbitron text-lg md:text-xl mb-2 md:mb-3">FAQ</h3>
+                    <p class="text-gray-400 text-sm md:text-base">Common questions</p>
                 </a>
                 
-                <a href="#" class="glass-effect rounded-xl p-6 text-center border border-neon-green/30 hover-lift transition-all duration-300">
-                    <div class="text-3xl mb-4">📚</div>
-                    <h3 class="font-orbitron text-xl mb-3">Documentation</h3>
-                    <p class="text-gray-400">Developer resources</p>
+                <a href="https://warpsynk.xyz/docs" class="glass-effect rounded-xl p-4 md:p-6 text-center border border-neon-green/30 hover-lift transition-all duration-300">
+                    <div class="text-2xl md:text-3xl mb-3 md:mb-4">📚</div>
+                    <h3 class="font-orbitron text-lg md:text-xl mb-2 md:mb-3">Documentation</h3>
+                    <p class="text-gray-400 text-sm md:text-base">Developer resources</p>
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="glass-effect border-t border-neon-purple/30 py-12 px-4">
+    <footer class="glass-effect border-t border-neon-purple/30 py-8 md:py-12 px-4 fade-in">
         <div class="container mx-auto max-w-6xl">
-            <div class="grid md:grid-cols-4 gap-8">
+            <div class="grid md:grid-cols-4 gap-6 md:gap-8">
                 <div>
-                    <div class="flex items-center space-x-3 mb-4">
-                        <div class="w-8 h-8 bg-gradient-to-br from-neon-purple to-neon-pink rounded-lg"></div>
-                        <span class="font-orbitron text-lg font-bold text-gradient">WarpSynk</span>
+                    <div class="flex items-center space-x-3 mb-3 md:mb-4">
+                        <div class="w-6 h-6 md:w-8 md:h-8 bg-gradient-to-br from-neon-purple to-neon-pink rounded-lg"></div>
+                        <span class="font-orbitron text-base md:text-lg font-bold text-gradient">WarpSynk</span>
                     </div>
-                    <p class="text-gray-400 text-sm">Building the future of data sovereignty</p>
+                    <p class="text-gray-400 text-xs md:text-sm">Building the future of data sovereignty</p>
                 </div>
                 
                 <div>
-                    <h4 class="font-orbitron text-neon-purple mb-4">Protocol</h4>
-                    <div class="space-y-2">
-                        <a href="https://warpsynk.xyz/home" target="_blank" class="block text-gray-400 hover:text-white transition-colors">Live Platform</a>
-                        <a href="#" class="block text-gray-400 hover:text-white transition-colors">Documentation</a>
-                        <a href="#" class="block text-gray-400 hover:text-white transition-colors">Roadmap</a>
-                    </div>
-                </div>
-                
-                <div>
-                    <h4 class="font-orbitron text-neon-purple mb-4">Community</h4>
-                    <div class="space-y-2">
-                        <a href="#" class="block text-gray-400 hover:text-white transition-colors">Twitter</a>
-                        <a href="#" class="block text-gray-400 hover:text-white transition-colors">Discord</a>
-                        <a href="#" class="block text-gray-400 hover:text-white transition-colors">GitHub</a>
+                    <h4 class="font-orbitron text-neon-purple mb-3 md:mb-4 text-sm md:text-base">Protocol</h4>
+                    <div class="space-y-1 md:space-y-2">
+                        <a href="https://warpsynk.xyz/index" target="_blank" class="block text-gray-400 hover:text-white transition-colors text-xs md:text-sm">Protocol</a>
+                        <a href="https://warpsynk.xyz/docs" class="block text-gray-400 hover:text-white transition-colors text-xs md:text-sm">Documentation</a>
+                        <a href="https://warpsynk.xyz/roadmap" class="block text-gray-400 hover:text-white transition-colors text-xs md:text-sm">Roadmap</a>
                     </div>
                 </div>
                 
                 <div>
-                    <h4 class="font-orbitron text-neon-purple mb-4">Stewards</h4>
-                    <div class="space-y-2">
-                        <a href="#whitelist" class="block text-gray-400 hover:text-white transition-colors">Apply for Whitelist</a>
-                        <a href="#benefits" class="block text-gray-400 hover:text-white transition-colors">Benefits</a>
-                        <a href="#governance" class="block text-gray-400 hover:text-white transition-colors">Governance</a>
+                    <h4 class="font-orbitron text-neon-purple mb-3 md:mb-4 text-sm md:text-base">Community</h4>
+                    <div class="space-y-1 md:space-y-2">
+                        <a href="https://x.com/WarpSynk" class="block text-gray-400 hover:text-white transition-colors text-xs md:text-sm">Twitter/X</a>
+                        <a href="https://t.me/WarpSynk" class="block text-gray-400 hover:text-white transition-colors text-xs md:text-sm">Telegram</a>
+                        <a href="https://warpsynk.medium.com" class="block text-gray-400 hover:text-white transition-colors text-xs md:text-sm">Medium</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-orbitron text-neon-purple mb-3 md:mb-4 text-sm md:text-base">Stewards</h4>
+                    <div class="space-y-1 md:space-y-2">
+                        <a href="#mint" class="block text-gray-400 hover:text-white transition-colors text-xs md:text-sm">Mint Founder Seat</a>
+                        <a href="#benefits" class="block text-gray-400 hover:text-white transition-colors text-xs md:text-sm">Benefits</a>
+                        <a href="#governance" class="block text-gray-400 hover:text-white transition-colors text-xs md:text-sm">Governance</a>
                     </div>
                 </div>
             </div>
             
-            <div class="border-t border-neon-purple/30 mt-8 pt-8 text-center text-gray-400 text-sm">
-                <p>© 2024 WarpSynk Protocol. All rights reserved.</p>
+            <div class="border-t border-neon-purple/30 mt-6 md:mt-8 pt-6 md:pt-8 text-center text-gray-400 text-xs md:text-sm">
+                <p>© 2025 WarpSynk Protocol. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling
-        function scrollToWhitelist() {
-            document.getElementById('whitelist').scrollIntoView({ 
-                behavior: 'smooth' 
-            });
-        }
-
-        // Update whitelist counter randomly for demo
-        function updateWhitelistCounter() {
-            const counter = document.getElementById('whitelistCounter');
-            const current = parseInt(counter.textContent.split('/')[0]);
-            if (current < 50 && Math.random() > 0.7) {
-                counter.textContent = `${current + 1}/50`;
-            }
-        }
-
-        // Intersection Observer for animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             });
         });
 
-        // Observe all cards and sections
-        document.querySelectorAll('.glass-effect').forEach((el) => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'all 0.6s ease';
-            observer.observe(el);
+        // Preload critical elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Force layout calculation to prevent cumulative layout shift
+            document.body.offsetHeight;
+            
+            // Add loaded class to trigger animations
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+            }, 100);
         });
 
-        // Update counter every 10 seconds
-        setInterval(updateWhitelistCounter, 10000);
+        // Optimize performance by deferring non-critical animations
+        window.addEventListener('load', function() {
+            // All critical content is now loaded
+            const lazyElements = document.querySelectorAll('.fade-in');
+            lazyElements.forEach(el => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Mobile menu toggle (if needed in future)
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            if (menu) {
+                menu.classList.toggle('hidden');
+            }
+        }
     </script>
 </body>
 </html>
